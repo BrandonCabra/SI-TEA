@@ -1,0 +1,103 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background: url('IMAGENES/fondo16.jpeg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Estilo del header */
+.header-logo {
+  max-width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar {
+  background-color: #ffffff; /* Color para la barra de navegación */
+}
+
+.navbar-nav {
+  gap: 20px; /* Espacio entre los elementos de la navegación */
+}
+
+.nav-link {
+  color: #346CB4; /* Azul claro para los enlaces de navegación */
+}
+
+.nav-link:hover {
+  color: #2eaaf7; /* Azul más claro en hover */
+}
+
+.boton {
+  background-color: #0047A2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.boton:hover {
+  background-color: #1fa4f6;
+  color: #ffffff;
+}
+
+/* Estilo del main */
+main {
+  padding: 20px;
+  background-color: rgba(7, 7, 7, 0.6); /* Fondo semitransparente */
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px; /* Limitar el ancho máximo para mejor presentación */
+}
+
+h1 {
+  color: #ffffff;
+}
+
+h2 {
+  color: #ffffff;
+}
+
+h3 {
+  color: #ffffff;
+  text-align: justify;
+}
+
+
+
+/* Estilo del footer */
+footer {
+  background-color: rgba(7, 7, 7, 0.6); /* Fondo semitransparente */
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px; /* Limitar el ancho máximo para mejor presentación */
+  padding: 20px;
+}
+
+footer p {
+  margin: 0;
+  color: #000000;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  margin: 0 10px;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
