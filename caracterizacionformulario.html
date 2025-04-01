@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Caracterización</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario de Caracterización</h2>
+    <form id="caracterizacionForm">
+        <label for="codigo">Código Caracterización:</label>
+        <input type="text" id="codigo" name="codigo" required>
+
+        <label for="valoracion_pedagogica">Valoración Pedagógica:</label>
+        <textarea id="valoracion_pedagogica" name="valoracion_pedagogica" required></textarea>
+
+        <label for="diagnostico">Diagnóstico:</label>
+        <textarea id="diagnostico" name="diagnostico" required></textarea>
+
+        <label for="corresponsabilidad">Corresponsabilidad:</label>
+        <textarea id="corresponsabilidad" name="corresponsabilidad" required></textarea>
+
+        <label for="contexto_academico">Contexto Académico:</label>
+        <textarea id="contexto_academico" name="contexto_academico" required></textarea>
+
+        <label for="recomendaciones">Recomendaciones:</label>
+        <textarea id="recomendaciones" name="recomendaciones" required></textarea>
+
+        <label for="contexto_familiar">Contexto Familiar:</label>
+        <textarea id="contexto_familiar" name="contexto_familiar" required></textarea>
+
+        <label for="contexto_escolar">Contexto Escolar:</label>
+        <textarea id="contexto_escolar" name="contexto_escolar" required></textarea>
+
+        <label for="barreras_aprendizaje">Barreras de Aprendizaje:</label>
+        <textarea id="barreras_aprendizaje" name="barreras_aprendizaje" required></textarea>
+
+        <label for="evaluacion">Evaluación:</label>
+        <textarea id="evaluacion" name="evaluacion" required></textarea>
+
+        <label for="flexibilizacion">Flexibilización:</label>
+        <textarea id="flexibilizacion" name="flexibilizacion" required></textarea>
+
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('caracterizacionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Formulario enviado correctamente.');
+        });
+    </script>
+</body>
+</html>
