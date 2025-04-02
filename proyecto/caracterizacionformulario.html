@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Caracterización</title>
+    <link rel="icon" type="image/svg+xml" href="IMAGENES/iconsitea.svg">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,49 +42,42 @@
     </style>
 </head>
 <body>
-    <h2>Formulario de Caracterización</h2>
-    <form id="caracterizacionForm">
-      <label for="codigo">Código Caracterización</label>
-      <input type="text" id="codigo" name="codigo" required>
+  <h2>Formulario de Caracterización</h2>
+  <form action="conexion.php" method="post">
+    <label for="codigo">Código Caracterización</label>
+    <input type="text" id="codigo" name="codigo" required>
 
-      <label for="valoracion_pedagogica">Valoración Pedagógica</label>
-      <input type="text" id="valoracion_pedagogica" name="valoracion_pedagogica" required>
+    <label for="valoracion_pedagogica">Valoración Pedagógica</label>
+    <input type="text" id="valoracion_pedagogica" name="valoracion_pedagogica" required>
 
-      <label for="diagnostico">Diagnóstico</label>
-      <input type="text" id="diagnostico" name="diagnostico" required>
+    <label for="diagnostico">Diagnóstico</label>
+    <input type="text" id="diagnostico" name="diagnostico" required>
 
-      <label for="corresponsabilidad">Corresponsabilidad</label>
-      <input type="text" id="corresponsabilidad" name="corresponsabilidad" required>
+    <label for="corresponsabilidad">Corresponsabilidad</label>
+     <input type="text" id="corresponsabilidad" name="corresponsabilidad" required>
 
-      <label for="contexto_academico">Contexto Académico</label>
-      <input type="text" id="contexto_academico" name="contexto_academico" required>
+    <label for="contexto_academico">Contexto Académico</label>
+    <input type="text" id="contexto_academico" name="contexto_academico" required>
 
-      <label for="recomendaciones">Recomendaciones</label>
-      <input id="recomendaciones" name="recomendaciones" required>
+    <label for="recomendaciones">Recomendaciones</label>
+    <input id="recomendaciones" name="recomendaciones" required>
 
-      <label for="contexto_familiar">Contexto Familiar</label>
-      <input type="text" id="contexto_familiar" name="contexto_familiar" required>
+    <label for="contexto_familiar">Contexto Familiar</label>
+    <input type="text" id="contexto_familiar" name="contexto_familiar" required>
 
-      <label for="contexto_escolar">Contexto Escolar</label>
-      <input type="text" id="contexto_escolar" name="contexto_escolar" required>
+    <label for="contexto_escolar">Contexto Escolar</label>
+    <input type="text" id="contexto_escolar" name="contexto_escolar" required>
 
-      <label for="barreras_aprendizaje">Barreras de Aprendizaje</label>
-      <input type="text" id="barreras_aprendizaje" name="barreras_aprendizaje" required>
+    <label for="barreras_aprendizaje">Barreras de Aprendizaje</label>
+    <input type="text" id="barreras_aprendizaje" name="barreras_aprendizaje" required>
 
-      <label for="evaluacion">Evaluación</label>
-      <input type="text" id="evaluacion" name="evaluacion" required>
+    <label for="evaluacion">Evaluación</label>
+    <input type="text" id="evaluacion" name="evaluacion" required>
 
-      <label for="flexibilizacion">Flexibilización</label>
-      <input type="text" id="flexibilizacion" name="flexibilizacion" required>+
+    <label for="flexibilizacion">Flexibilización</label>
+    <input type="text" id="flexibilizacion" name="flexibilizacion" required>+
 
-      <button type="submit">Enviar</button>
-    </form>
-
-    <script>
-        document.getElementById('caracterizacionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Formulario enviado correctamente.');
-        });
-    </script>
+    <button type="submit">Enviar</button>
+  </form>
 </body>
 </html>

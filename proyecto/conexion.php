@@ -5,9 +5,9 @@ $password = ""; // Cambia este valor si tienes una contraseña
 $dbname = "gestion_vehiculos";
 //$port=3306;
 
-$conexion = new mysqli($host, $username, $password, $dbname);
-
-if ($conexion->connect_error) {
+if ($conexion = new mysqli($host, $username, $password, $dbname)) {
+    echo "Conexión exitosa a la base de datos";
+} else {
     die("Error al conectar a la base de datos: " . $conexion->connect_error);
 }
 ?>
