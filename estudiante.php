@@ -13,11 +13,11 @@ class estudiante
     public $DIRECCION_ESTUDIANTE;
     public $TELEFONO_ESTUDIANTE;
     public $CORREO_INSTITUCIONAL_ESTUDIANTE;
-    public $FOTOGRAFIA_ESTUDIANTEGRAFIA_ESTUDIANTE;
+    public $FOTOGRAFIA_ESTUDIANTE;
     public $numero_documento_padre;
 
 
-    public function __construct($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE)
+    public function __construct($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre)
     {
         $this->ID_ESTUDIANTE = $ID_ESTUDIANTE; 
         $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
@@ -31,83 +31,84 @@ class estudiante
         $this->TELEFONO_ESTUDIANTE = $TELEFONO_ESTUDIANTE;
         $this->CORREO_INSTITUCIONAL_ESTUDIANTE = $CORREO_INSTITUCIONAL_ESTUDIANTE;
         $this->FOTOGRAFIA_ESTUDIANTE = $FOTOGRAFIA_ESTUDIANTE;
+        $this->numero_documento_padre = $numero_documento_padre;
     }
 
-    public function getIdEstudiante()
+    public function getID_ESTUDIANTE()
     {
         return $this->ID_ESTUDIANTE;
     }
 
-    public function setIdEstudiante($ID_ESTUDIANTE):self{
+    public function setID_ESTUDIANTE($ID_ESTUDIANTE):self{
         $this->ID_ESTUDIANTE = $ID_ESTUDIANTE;
         return $this;
     }
 
-    public function getTipoDocumento()
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
     {
         return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
     }
-    public function setTipoDocumento($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO): self
+    public function setTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO): self
     {
         $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
 
         return $this;
     }
-    public function getNumeroDocumento()
+    public function getNUMERO_DOCUMENTO_ESTUDIANTE()
     {
         return $this->NUMERO_DOCUMENTO_ESTUDIANTE;
     }
-    public function setNumeroDocumento($NUMERO_DOCUMENTO_ESTUDIANTE): self
+    public function setNUMERO_DOCUMENTO_ESTUDIANTE($NUMERO_DOCUMENTO_ESTUDIANTE): self
     {
         $this->NUMERO_DOCUMENTO_ESTUDIANTE = $NUMERO_DOCUMENTO_ESTUDIANTE;
 
         return $this;
     }
-    public function getPrimerNombre()
+    public function getPRIMER_NOMBRE_ESTUDIANTE()
     {
-        return $this->PRIMER_NOMBRE_ESTUDIANTE;
+        return $this->NUMERO_DOCUMENTO_ESTUDIANTE;
     }
-    public function setPrimerNombre($PRIMER_NOMBRE_ESTUDIANTE): self
+    public function setPRIMER_NOMBRE_ESTUDIANTE($NUMERO_DOCUMENTO_ESTUDIANTE): self
     {
-        $this->PRIMER_NOMBRE_ESTUDIANTE = $PRIMER_NOMBRE_ESTUDIANTE;
+        $this->NUMERO_DOCUMENTO_ESTUDIANTE = $NUMERO_DOCUMENTO_ESTUDIANTE;
 
         return $this;
     }
-    public function getSegundoNombre()
+    public function getSEGUNDO_NOMBRE_ESTUDIANTE()
     {
         return $this->SEGUNDO_NOMBRE_ESTUDIANTE;
     }
-    public function setSegundoNombre($SEGUNDO_NOMBRE_ESTUDIANTE): self
+    public function setSEGUNDO_NOMBRE_ESTUDIANTE($SEGUNDO_NOMBRE_ESTUDIANTE): self
     {
         $this->SEGUNDO_NOMBRE_ESTUDIANTE = $SEGUNDO_NOMBRE_ESTUDIANTE;
 
         return $this;
     }
-    public function getPrimerApellido()
+    public function getPRIMER_APELLIDO_ESTUDIANTE()
     {
         return $this->PRIMER_APELLIDO_ESTUDIANTE;
     }
-    public function setPrimerApellido($PRIMER_APELLIDO_ESTUDIANTE): self
+    public function setPRIMER_APELLIDO_ESTUDIANTE($PRIMER_APELLIDO_ESTUDIANTE): self
     {
         $this->PRIMER_APELLIDO_ESTUDIANTE = $PRIMER_APELLIDO_ESTUDIANTE;
 
         return $this;
     }
-    public function getSegundoApellido()
+    public function getSEGUNDO_APELLIDO_ESTUDIANTE()
     {
         return $this->SEGUNDO_APELLIDO_ESTUDIANTE;
     }
-    public function setSegundoApellido($SEGUNDO_APELLIDO_ESTUDIANTE): self
+    public function setSEGUNDO_APELLIDO_ESTUDIANTE($SEGUNDO_APELLIDO_ESTUDIANTE): self
     {
         $this->SEGUNDO_APELLIDO_ESTUDIANTE = $SEGUNDO_APELLIDO_ESTUDIANTE;
 
         return $this;
     }
-    public function getFechaNacimiento()
+    public function getFECHA_NACIMIENTO()
     {
         return $this->FECHA_NACIMIENTO;
     }
-    public function setFechaNacimiento($FECHA_NACIMIENTO): self
+    public function setFECHA_NACIMIENTO($FECHA_NACIMIENTO): self
     {
         $this->FECHA_NACIMIENTO = $FECHA_NACIMIENTO;
 
@@ -133,11 +134,11 @@ class estudiante
 
         return $this;
     }
-    public function getCorreoInstitucional()
+    public function getCORREO_INSTITUCIONAL()
     {
         return $this->CORREO_INSTITUCIONAL_ESTUDIANTE;
     }
-    public function setCorreoInstitucional($CORREO_INSTITUCIONAL_ESTUDIANTE): self
+    public function setCORREO_INSTITUCIONAL($CORREO_INSTITUCIONAL_ESTUDIANTE): self
     {
         $this->CORREO_INSTITUCIONAL_ESTUDIANTE = $CORREO_INSTITUCIONAL_ESTUDIANTE;
 
@@ -153,46 +154,38 @@ class estudiante
 
         return $this;
     }
-
-    public function conectar($conexion) 
+    
+    public function getnumero_documento_padre()
     {
-        $sql = "INSERT INTO estudiantes (ID_ESTUDIANTE, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(0, $this->ID_ESTUDIANTE, PDO::PARAM_INT);
-        $stmt->bindValue(1, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
-        $stmt->bindValue(2, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(4, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(5, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(6, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(9, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(10, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(11, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
-
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->numero_documento_padre;
     }
+    public function setnumero_documento_padre($numero_documento_padre): self
+    {
+        $this->numero_documento_padre = $numero_documento_padre;
+
+        return $this;
+    }
+
+    //Metodos para la base de datos
+
+    //Método para guardar un estudiante en la base de datos
     public function guardarEstudiante($conexion) 
     {
         $sql = "INSERT INTO estudiantes (ID_ESTUDIANTE, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(0, $this->ID_ESTUDIANTE, PDO::PARAM_INT);
-        $stmt->bindValue(1, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
-        $stmt->bindValue(2, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(4, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(5, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(6, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(9, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(10, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(11, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(1, $this->ID_ESTUDIANTE, PDO::PARAM_INT);
+        $stmt->bindValue(2, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
+        $stmt->bindValue(3, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(4, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(5, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(6, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(7, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(8, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
+        $stmt->bindValue(9, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(10, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(11, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(12, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
 
         return $stmt->execute();
     }
@@ -248,11 +241,11 @@ class estudiante
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function validarNumeroDocumento($NUMERO_DOCUMENTO_ESTUDIANTE) 
+    public function validarPRIMER_NOMBRE_ESTUDIANTE($NUMERO_DOCUMENTO_ESTUDIANTE) 
     {
         return preg_match('/^\d{10}$/', $NUMERO_DOCUMENTO_ESTUDIANTE); 
     }
-    public function validarCorreoInstitucional($CORREO_INSTITUCIONAL_ESTUDIANTE) 
+    public function validarCORREO_INSTITUCIONAL($CORREO_INSTITUCIONAL_ESTUDIANTE) 
     {
         return filter_var($CORREO_INSTITUCIONAL_ESTUDIANTE, FILTER_VALIDATE_EMAIL);
     }
@@ -260,7 +253,7 @@ class estudiante
     {
         return preg_match('/^\d{10}$/', $TELEFONO_ESTUDIANTE);
     }
-    public function validarFechaNacimiento($FECHA_NACIMIENTO) 
+    public function validarFECHA_NACIMIENTO($FECHA_NACIMIENTO) 
     {
         $fecha = DateTime::createFromFormat('Y-m-d', $FECHA_NACIMIENTO);
         return $fecha && $fecha->format('Y-m-d') === $FECHA_NACIMIENTO;
@@ -277,7 +270,7 @@ class estudiante
     {
         return preg_match('/^[a-zA-Z\s]+$/', $apellido);
     }
-    public function validarTipoDocumento($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO) 
+    public function validarTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO) 
     {
         $tipos_validos = ['CC', 'TI', 'CE', 'RC'];
         return in_array($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $tipos_validos);
@@ -289,16 +282,16 @@ class estudiante
     }
     public function validarEstudiante() 
     {
-        if (!$this->validarNumeroDocumento($this->NUMERO_DOCUMENTO_ESTUDIANTE)) {
+        if (!$this->validarPRIMER_NOMBRE_ESTUDIANTE($this->NUMERO_DOCUMENTO_ESTUDIANTE)) {
             return "El número de documento debe tener 10 dígitos.";
         }
-        if (!$this->validarCorreoInstitucional($this->CORREO_INSTITUCIONAL_ESTUDIANTE)) {
+        if (!$this->validarCORREO_INSTITUCIONAL($this->CORREO_INSTITUCIONAL_ESTUDIANTE)) {
             return "El correo institucional no es válido.";
         }
         if (!$this->validarTELEFONO_ESTUDIANTE($this->TELEFONO_ESTUDIANTE)) {
             return "El teléfono debe tener 10 dígitos.";
         }
-        if (!$this->validarFechaNacimiento($this->FECHA_NACIMIENTO)) {
+        if (!$this->validarFECHA_NACIMIENTO($this->FECHA_NACIMIENTO)) {
             return "La fecha de nacimiento no es válida.";
         }
         if (!$this->validarDIRECCION_ESTUDIANTE($this->DIRECCION_ESTUDIANTE)) {
@@ -310,7 +303,7 @@ class estudiante
         if (!$this->validarApellido($this->PRIMER_APELLIDO_ESTUDIANTE) || !$this->validarApellido($this->SEGUNDO_APELLIDO_ESTUDIANTE)) {
             return "Los apellidos solo pueden contener letras y espacios.";
         }
-        if (!$this->validarTipoDocumento($this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)) {
+        if (!$this->validarTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO($this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)) {
             return "El tipo de documento no es válido.";
         }
         if (!$this->validarFOTOGRAFIA_ESTUDIANTE($this->FOTOGRAFIA_ESTUDIANTE)) {

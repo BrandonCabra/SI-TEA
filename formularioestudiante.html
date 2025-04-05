@@ -5,46 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Estudiante</title>
     <link rel="icon" type="image/svg+xml" href="IMAGENES/iconsitea.svg">
+    <link rel="stylesheet" href="formularios.css">
 </head>
 <body>
-    <h2>Formulario de Estudiante</h2>
-    <div class="form-container">
-        <div class="photo-section">
-            <label for="foto">Foto del Estudiante:</label>
-            <input type="file" id="foto" name="foto" accept="image/*" required>
-        </div>
-        <div class="form-section">
-            <form action="procesarestudiante.php" method="post">
-                <label for="documento">Número de Documento:</label>
-                <input type="text" id="documento" name="documento" required>
-
-                <label for="primer_nombre">Primer Nombre:</label>
-                <input type="text" id="primer_nombre" name="primer_nombre" required>
-
-                <label for="segundo_nombre">Segundo Nombre:</label>
-                <input type="text" id="segundo_nombre" name="segundo_nombre">
-
-                <label for="primer_apellido">Primer Apellido:</label>
-                <input type="text" id="primer_apellido" name="primer_apellido" required>
-
-                <label for="segundo_apellido">Segundo Apellido:</label>
-                <input type="text" id="segundo_apellido" name="segundo_apellido">
-
-                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
-
-                <label for="telefono">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" required>
-
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required>
-
-                <label for="correo_institucional">Correo Institucional:</label>
-                <input type="email" id="correo_institucional" name="correo_institucional" required>
-
-                <input type="submit" value="Registrar">
-            </form>
-        </div>
+  <h2>Formulario de Estudiante</h2>
+    <div class="photo-section">
+      <label for="foto">Foto del Estudiante</label>
+      <input type="file" id="foto" name="foto" accept="image/*" required>
     </div>
+  <div class="contenedor">
+    <form action="procesarestudiante.php" method="post">
+      <label for="documento_padre">Numero de Documento Padre</label>
+      <input type="text" id="documento_padre" name="numero_documento_padre" required>
+
+      <label for="documento">Número de Documento Estudiante</label>
+      <input type="text" id="documento" name="documento" required>
+
+      <label for="primer_nombre">Primer Nombre</label>
+      <input type="text" id="primer_nombre" name="primer_nombre" required>
+
+      <label for="segundo_nombre">Segundo Nombre</label>
+      <input type="text" id="segundo_nombre" name="segundo_nombre">
+
+      <label for="primer_apellido">Primer Apellido</label>
+      <input type="text" id="primer_apellido" name="primer_apellido" required>
+
+      <label for="segundo_apellido">Segundo Apellido</label>
+      <input type="text" id="segundo_apellido" name="segundo_apellido">
+
+      <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+      <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" name="telefono" required>
+
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" name="direccion" required>
+
+      <label for="correo_institucional">Correo Institucional</label>
+      <input type="email" id="correo_institucional" name="correo_institucional" required>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
 </body>
 </html>
