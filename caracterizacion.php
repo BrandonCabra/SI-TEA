@@ -126,28 +126,47 @@ class Caracterizacion {
     // Métodos para guardar, obtener, actualizar y eliminar (CRUD) caracterizaciones
     public function guardarCaracterizacion($conexion) {
         $sql = "INSERT INTO caracterizacion (CODIGO_CARACTERIZACION, VALORACION_PEDAGOGICA, DIAGNOSTICO, CORRESPONSABILIDAD, CONTEXTO_ACADEMICO, RECOMENDACIONES, CONTEXTO_FAMILIAR, CONTEXTO_ESCOLAR, BARRA_DE_APRENDIZAJE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $conexion = Conexion1::conectar();          
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("issssssss", $this->CODIGO_CARACTERIZACION, $this->VALORACION_PEDAGOGICA, $this->DIAGNOSTICO, $this->CORRESPONSABILIDAD, $this->CONTEXTO_ACADEMICO, $this->RECOMENDACIONES, $this->CONTEXTO_FAMILIAR, $this->CONTEXTO_ESCOLAR, $this->BARRA_DE_APRENDIZAJE);
+        $stmt->bindValue(1, $this->CODIGO_CARACTERIZACION, PDO::PARAM_INT);
+        $stmt->bindValue(2, $this->VALORACION_PEDAGOGICA, PDO::PARAM_STR);
+        $stmt->bindValue(3, $this->DIAGNOSTICO, PDO::PARAM_STR);
+        $stmt->bindValue(4, $this->CORRESPONSABILIDAD, PDO::PARAM_STR);
+        $stmt->bindValue(5, $this->CONTEXTO_ACADEMICO, PDO::PARAM_STR);
+        $stmt->bindValue(6, $this->RECOMENDACIONES, PDO::PARAM_STR);
+        $stmt->bindValue(7, $this->CONTEXTO_FAMILIAR, PDO::PARAM_STR);
+        $stmt->bindValue(8, $this->CONTEXTO_ESCOLAR, PDO::PARAM_STR);
+        $stmt->bindValue(9, $this->BARRA_DE_APRENDIZAJE, PDO::PARAM_STR);
         return $stmt->execute();
     }
-    public function obtenerCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
-        $sql = "SELECT * FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
+    public function obtenerCaracterizacion($conexion, $ID_CARACTERIZACION) {
+        $sql = "SELECT * FROM caracterizacion WHERE ID_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
+        $stmt->bindValue(1, $ID_CARACTERIZACION, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function actualizarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
-        
-        $sql = "UPDATE caracterizacion SET VALORACION_PEDAGOGICA = ?, DIAGNOSTICO = ?, CORRESPONSABILIDAD = ?, CONTEXTO_ACADEMICO = ?, RECOMENDACIONES = ?, CONTEXTO_FAMILIAR = ?, CONTEXTO_ESCOLAR = ?, BARRA_DE_APRENDIZAJE = ? WHERE CODIGO_CARACTERIZACION = ?";
+    public function actualizarCaracterizacion($conexion) {
+        $sql = "UPDATE caracterizacion SET CODIGO_CARACTERIZACION=?, VALORACION_PEDAGOGICA = ?, DIAGNOSTICO = ?, CORRESPONSABILIDAD = ?, CONTEXTO_ACADEMICO = ?, RECOMENDACIONES = ?, CONTEXTO_FAMILIAR = ?, CONTEXTO_ESCOLAR = ?, BARRA_DE_APRENDIZAJE = ? WHERE ID_CARACTERIZACION = ?";
+        $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("ssssssssi", $this->VALORACION_PEDAGOGICA, $this->DIAGNOSTICO, $this->CORRESPONSABILIDAD, $this->CONTEXTO_ACADEMICO, $this->RECOMENDACIONES, $this->CONTEXTO_FAMILIAR, $this->CONTEXTO_ESCOLAR, $this->BARRA_DE_APRENDIZAJE, $this->CODIGO_CARACTERIZACION);
+        $stmt->bindValue(1, $this->CODIGO_CARACTERIZACION, PDO::PARAM_INT);
+        $stmt->bindValue(2, $this->VALORACION_PEDAGOGICA, PDO::PARAM_STR);
+        $stmt->bindValue(3, $this->DIAGNOSTICO, PDO::PARAM_STR);
+        $stmt->bindValue(4, $this->CORRESPONSABILIDAD, PDO::PARAM_STR);
+        $stmt->bindValue(5, $this->CONTEXTO_ACADEMICO, PDO::PARAM_STR); 
+        $stmt->bindValue(6, $this->RECOMENDACIONES, PDO::PARAM_STR);
+        $stmt->bindValue(7, $this->CONTEXTO_FAMILIAR, PDO::PARAM_STR);
+        $stmt->bindValue(8, $this->CONTEXTO_ESCOLAR, PDO::PARAM_STR);
+        $stmt->bindValue(9, $this->BARRA_DE_APRENDIZAJE, PDO::PARAM_STR);
+        $stmt->bindValue(10, $this->ID_CARACTERIZACION, PDO::PARAM_INT);    
         return $stmt->execute();
     }
-    public function eliminarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
-        $sql = "DELETE FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
+    public function eliminarCaracterizacion($conexion) {
+        $sql = "DELETE FROM caracterizacion WHERE ID_CARACTERIZACION = ?";
+        $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
+        $stmt->bindValue(1, $this->ID_CARACTERIZACION, PDO::PARAM_INT);
         return $stmt->execute();
     }
     public function listarCaracterizaciones($conexion) {
@@ -155,12 +174,12 @@ class Caracterizacion {
         $result = $conexion->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    public function buscarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
-        $sql = "SELECT * FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
+    public function buscarCaracterizacion($conexion, $ID_CARACTERIZACION) {
+        $sql = "SELECT * FROM caracterizacion WHERE ID_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
+        $stmt->bindValue(1, $ID_CARACTERIZACION, PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public function validarCaracterizacion() {
         if (empty($this->VALORACION_PEDAGOGICA) || empty($this->DIAGNOSTICO) || empty($this->CORRESPONSABILIDAD) || empty($this->CONTEXTO_ACADEMICO) || empty($this->RECOMENDACIONES) || empty($this->CONTEXTO_FAMILIAR) || empty($this->CONTEXTO_ESCOLAR) || empty($this->BARRA_DE_APRENDIZAJE)) {
@@ -183,8 +202,6 @@ function crearCaracterizacion($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VAL
     return new Caracterizacion($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE);
 }
 
-
-$caracterizacion = crearCaracterizacion(1,1, "Valoración 1", "Diagnóstico 1", "CORRESPONSABILIDAD 1", "Contexto Académico 1", "RECOMENDACIONES 1", "Contexto Familiar 1", "Contexto Escolar 1", "Barreras de Aprendizaje 1");
 
 ?>
 
