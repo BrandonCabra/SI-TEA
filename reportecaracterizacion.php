@@ -1,6 +1,8 @@
 <?php
 // Incluir el archivo de conexión
-require_once 'conexion.php';
+include 'freddy/conexion.php';
+
+$conexion =Conexion1::conectar();
 
 try {
     // Conexión a la base de datos

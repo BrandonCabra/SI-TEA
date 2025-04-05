@@ -1,9 +1,10 @@
 <?php
-require_once 'conexion.php';
+require_once 'freddy/conexion.php';
 require_once 'caracterizacion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
+    $ID_CARACTERIZACION = $_POST['ID_CARACTERIZACION'] ?? null;
     $CODIGO_CARACTERIZACION = $_POST['CODIGO_CARACTERIZACION'] ?? null;
     $VALORACION_PEDAGOGICA = $_POST['VALORACION_PEDAGOGICA'] ?? null;
     $DIAGNOSTICO = $_POST['DIAGNOSTICO'] ?? null;
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
     // Guardar la caracterización en la base de datos
     try {
-        $caracterizacion= crearCaracterizacion($CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE);
+        $caracterizacion= crearCaracterizacion($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE);
         $conexion = Conexion1::conectar();
         $caracterizacion->guardarCaracterizacion($conexion);
         // Aquí puedes agregar la lógica para redirigir a otra página o mostrar un mensaje de éxito
