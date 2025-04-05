@@ -1,40 +1,38 @@
 <?php
-require_once 'conexion.php';
+require_once 'freddy/conexion.php';
 require_once 'estudiante.php';
 
  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ID_CARACTERIZACION = $_POST['ID_CARACTERIZACION'] ?? null;
-    $CODIGO_CARACTERIZACION = $_POST['CODIGO_CARACTERIZACION'] ?? null;
-    $VALORACION_PEDAGOGICA = $_POST['VALORACION_PEDAGOGICA'] ?? null;
-    $DIAGNOSTICO = $_POST['DIAGNOSTICO'] ?? null;
-    $CORRESPONSABILIDAD = $_POST['CORRESPONSABILIDAD'] ?? null;
-    $CONTEXTO_ACADEMICO = $_POST['CONTEXTO_ACADEMICO'] ?? null;
-    $RECOMENDACIONES = $_POST['RECOMENDACIONES'] ?? null;
-    $CONTEXTO_FAMILIAR = $_POST['CONTEXTO_FAMILIAR'] ?? null;
-    $CONTEXTO_ESCOLAR = $_POST['CONTEXTO_ESCOLAR'] ?? null;
-    $BARRA_DE_APRENDIZAJE = $_POST['BARRA_DE_APRENDIZAJE'] ?? null;
-
+    $ID_ESTUDIANTE = $_POST['ID_ESTUDIANTE'] ?? null;
+    $NUMERO_DOCUMENTO_ESTUDIANTE = $_POST['NUMERO_DOCUMENTO_ESTUDIANTE'] ?? null;
+    $PRIMER_NOMBRE_ESTUDIANTE = $_POST['PRIMER_NOMBRE_ESTUDIANTE'] ?? null;
+    $SEGUNDO_NOMBRE_ESTUDIANTE = $_POST['SEGUNDO_NOMBRE_ESTUDIANTE'] ?? null;
+    $PRIMER_APELLIDO_ESTUDIANTE = $_POST['PRIMER_APELLIDO_ESTUDIANTE'] ?? null;
+    $SEGUNDO_APELLIDO_ESTUDIANTE = $_POST['SEGUNDO_APELLIDO_ESTUDIANTE'] ?? null;
+    $FECHA_NACIMIENTO = $_POST['FECHA_NACIMIENTO'] ?? null;
+    $TELEFONO_ESTUDIANTE = $_POST['TELEFONO_ESTUDIANTE'] ?? null;
+    $DIRECCION_ESTUDIANTE = $_POST['DIRECCION_ESTUDIANTE'] ?? null;
+    $CORREO_INSTITUCIONAL_ESTUDIANTE = $_POST['CORREO_INSTITUCIONAL_ESTUDIANTE'] ?? null;
+    $FOTOGRAFIA_ESTUDIANTE = $_POST['FOTOGRAFIA_ESTUDIANTE']?? null;
+    $numero_documento_padre = $_POST['numero_documento_padre'] ?? null;
+    $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $_POST['TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO'] ?? null;
     
-    // Validar que los campos no estén vacíos
-    if (empty($tipo_documento) || empty($numero_documento) || empty($primer_nombre) || empty($primer_apellido) || empty($fecha_nacimiento) || empty($direccion) || empty($telefono) || empty($correo_institucional)) {
-        echo "Todos los campos son obligatorios.";
-        exit;
-    }
-    // Crear una instancia de la clase Estudiante
-    $estudiantes = new Estudiante($id_estudiante, $tipo_documento, $numero_documento, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $direccion, $telefono, $correo_institucional, $foto);
-    // Guardar el estudiante en la base de datos
-    try {
-        $conexion = Conexion1::conectar();
-        $stmt = $conexion->prepare("INSERT INTO estudiantes (id_estudiante, tipo_documento, numero_documento, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, direccion, telefono, correo_institucional, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$id_estudiante, $tipo_documento, $numero_documento, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $direccion, $telefono, $correo_institucional, $foto]);
-        echo "¡Estudiante registrado exitosamente!";
-    } catch (PDOException $e) {
-        echo "Error en la conexión a la base de datos. Intente más tarde: " . $e->getMessage();
-    }
-} else {
-    echo "Método de solicitud no permitido.";
+// Guardar el estudiante en la base de datos
+
+function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre) 
+{
+    return new Estudiante($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
 }
 
 
+    try {
+        $estudiante = crearEstudiante ($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
+        $conexion = Conexion1::conectar();
+        $estudiante->guardarEstudiante($conexion1);
+        echo "Estudiante registrado exitosamente";
+    } catch (Exception $e) {
+        echo "Error en la conexión a la base de datos. Intente más tarde: " . $e->getMessage();
+    }
+ }
 
 ?>
