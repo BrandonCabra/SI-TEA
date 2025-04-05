@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root"; // Cambia este valor si tu usuario es diferente
 $password = ""; // Cambia este valor si tienes una contraseña
-$dbname = "si_tea";
+$dbname = "sitea4.0"; // Cambia este valor si tu base de datos tiene otro nombre
 //$port=3306;
 
 if ($conexion = new mysqli($host, $username, $password, $dbname)) {

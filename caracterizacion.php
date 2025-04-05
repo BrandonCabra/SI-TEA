@@ -1,141 +1,153 @@
 <?php
 
-class Caracterizacion {
-    public $codigo_caracterizacion;
-    public $valoracion_pedagogica;
-    public $diagnostico; 
-    public $corresponsabilidad;
-    public $contexto_academico;
-    public $recomendaciones;
-    public $contexto_familiar;
-    public $contexto_escolar;
-    public $barreras_aprendizaje;
+class Caracterizacion { 
+    // Atributos de la clase
+    public $ID_CARACTERIZACION;
+    public $CODIGO_CARACTERIZACION;
+    public $VALORACION_PEDAGOGICA;
+    public $DIAGNOSTICO; 
+    public $CORRESPONSABILIDAD;
+    public $CONTEXTO_ACADEMICO;
+    public $RECOMENDACIONES;
+    public $CONTEXTO_FAMILIAR;
+    public $CONTEXTO_ESCOLAR;
+    public $BARRA_DE_APRENDIZAJE;
 
-    public function __construct($codigo_caracterizacion, $valoracion_pedagogica, $diagnostico, $corresponsabilidad, $contexto_academico, $recomendaciones, $contexto_familiar, $contexto_escolar, $barreras_aprendizaje) {
-        $this->codigo_caracterizacion = $codigo_caracterizacion;
-        $this->valoracion_pedagogica = $valoracion_pedagogica;
-        $this->diagnostico = $diagnostico;
-        $this->corresponsabilidad = $corresponsabilidad;
-        $this->contexto_academico = $contexto_academico;
-        $this->recomendaciones = $recomendaciones;
-        $this->contexto_familiar = $contexto_familiar;
-        $this->contexto_escolar = $contexto_escolar;
-        $this->barreras_aprendizaje = $barreras_aprendizaje;
+    // Constructor de la clase
+    public function __construct($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE) {
+        $this->ID_CARACTERIZACION = $ID_CARACTERIZACION;
+        $this->CODIGO_CARACTERIZACION = $CODIGO_CARACTERIZACION;
+        $this->VALORACION_PEDAGOGICA = $VALORACION_PEDAGOGICA;
+        $this->DIAGNOSTICO = $DIAGNOSTICO;
+        $this->CORRESPONSABILIDAD = $CORRESPONSABILIDAD;
+        $this->CONTEXTO_ACADEMICO = $CONTEXTO_ACADEMICO;
+        $this->RECOMENDACIONES = $RECOMENDACIONES;
+        $this->CONTEXTO_FAMILIAR = $CONTEXTO_FAMILIAR;
+        $this->CONTEXTO_ESCOLAR = $CONTEXTO_ESCOLAR;
+        $this->BARRA_DE_APRENDIZAJE = $BARRA_DE_APRENDIZAJE;
     }
+    // GETTERS Y SETTERS
+    public function getID_CARACTERIZACION()
+    {
+        return $this->ID_CARACTERIZACION;
+    } 
     public function getCodigo()
     {
-        return $this->codigo_caracterizacion;
+        return $this->CODIGO_CARACTERIZACION;
     }
     public function setCodigo($codigo): self
     {
-        $this->codigo_caracterizacion = $codigo;
+        $this->CODIGO_CARACTERIZACION = $codigo;
 
         return $this;
     }
     public function getValoracionPedagogica()
     {
-        return $this->valoracion_pedagogica;
+        return $this->VALORACION_PEDAGOGICA;
     }
-    public function setValoracionPedagogica($valoracion_pedagogica): self
+    public function setValoracionPedagogica($VALORACION_PEDAGOGICA): self
     {
-        $this->valoracion_pedagogica = $valoracion_pedagogica;
+        $this->VALORACION_PEDAGOGICA = $VALORACION_PEDAGOGICA;
 
         return $this;
     }
-    public function getDiagnostico()
+    public function getDIAGNOSTICO()
     {
-        return $this->diagnostico;
+        return $this->DIAGNOSTICO;
     }
-    public function setDiagnostico($diagnostico): self
+    public function setDIAGNOSTICO($DIAGNOSTICO): self
     {
-        $this->diagnostico = $diagnostico;
+        $this->DIAGNOSTICO = $DIAGNOSTICO;
 
         return $this;
     }
 
-    public function getCorresponsabilidad()
+    public function getCORRESPONSABILIDAD()
     {
-        return $this->corresponsabilidad;
+        return $this->CORRESPONSABILIDAD;
     }
-    public function setCorresponsabilidad($corresponsabilidad): self
+    public function setCORRESPONSABILIDAD($CORRESPONSABILIDAD): self
     {
-        $this->corresponsabilidad = $corresponsabilidad;
+        $this->CORRESPONSABILIDAD = $CORRESPONSABILIDAD;
 
         return $this;
     }
     public function getContextoAcademico()
     {
-        return $this->contexto_academico;
+        return $this->CONTEXTO_ACADEMICO;
     }
-    public function setContextoAcademico($contexto_academico): self
+    public function setContextoAcademico($CONTEXTO_ACADEMICO): self
     {
-        $this->contexto_academico = $contexto_academico;
+        $this->CONTEXTO_ACADEMICO = $CONTEXTO_ACADEMICO;
 
         return $this;
     }
-    public function getRecomendaciones()
+    public function getRECOMENDACIONES()
     {
-        return $this->recomendaciones;
+        return $this->RECOMENDACIONES;
     }
-    public function setRecomendaciones($recomendaciones): self
+    public function setRECOMENDACIONES($RECOMENDACIONES): self
     {
-        $this->recomendaciones = $recomendaciones;
+        $this->RECOMENDACIONES = $RECOMENDACIONES;
 
         return $this;
     }
     public function getContextoFamiliar()
     {
-        return $this->contexto_familiar;
+        return $this->CONTEXTO_FAMILIAR;
     }
-    public function setContextoFamiliar($contexto_familiar): self
+    public function setContextoFamiliar($CONTEXTO_FAMILIAR): self
     {
-        $this->contexto_familiar = $contexto_familiar;
+        $this->CONTEXTO_FAMILIAR = $CONTEXTO_FAMILIAR;
 
         return $this;
     }
     public function getContextoEscolar()
     {
-        return $this->contexto_escolar;
+        return $this->CONTEXTO_ESCOLAR;
     }
-    public function setContextoEscolar($contexto_escolar): self
+    public function setContextoEscolar($CONTEXTO_ESCOLAR): self
     {
-        $this->contexto_escolar = $contexto_escolar;
+        $this->CONTEXTO_ESCOLAR = $CONTEXTO_ESCOLAR;
 
         return $this;
     }
     public function getBarrerasAprendizaje()
     {
-        return $this->barreras_aprendizaje;
+        return $this->BARRA_DE_APRENDIZAJE;
     }
-    public function setBarrerasAprendizaje($barreras_aprendizaje): self
+    public function setBarrerasAprendizaje($BARRA_DE_APRENDIZAJE): self
     {
-        $this->barreras_aprendizaje = $barreras_aprendizaje;
+        $this->BARRA_DE_APRENDIZAJE = $BARRA_DE_APRENDIZAJE;
 
         return $this;
     }
+    // Métodos para interactuar con la base de datos
+    // Métodos para guardar, obtener, actualizar y eliminar (CRUD) caracterizaciones
     public function guardarCaracterizacion($conexion) {
-        $sql = "INSERT INTO caracterizacion (codigo_caracterizacion, valoracion_pedagogica, diagnostico, corresponsabilidad, contexto_academico, recomendaciones, contexto_familiar, contexto_escolar, barreras_aprendizaje) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO caracterizacion (CODIGO_CARACTERIZACION, VALORACION_PEDAGOGICA, DIAGNOSTICO, CORRESPONSABILIDAD, CONTEXTO_ACADEMICO, RECOMENDACIONES, CONTEXTO_FAMILIAR, CONTEXTO_ESCOLAR, BARRA_DE_APRENDIZAJE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("issssssss", $this->codigo_caracterizacion, $this->valoracion_pedagogica, $this->diagnostico, $this->corresponsabilidad, $this->contexto_academico, $this->recomendaciones, $this->contexto_familiar, $this->contexto_escolar, $this->barreras_aprendizaje);
+        $stmt->bind_param("issssssss", $this->CODIGO_CARACTERIZACION, $this->VALORACION_PEDAGOGICA, $this->DIAGNOSTICO, $this->CORRESPONSABILIDAD, $this->CONTEXTO_ACADEMICO, $this->RECOMENDACIONES, $this->CONTEXTO_FAMILIAR, $this->CONTEXTO_ESCOLAR, $this->BARRA_DE_APRENDIZAJE);
         return $stmt->execute();
     }
-    public function obtenerCaracterizacion($conexion, $codigo_caracterizacion) {
-        $sql = "SELECT * FROM caracterizacion WHERE codigo_caracterizacion = ?";
+    public function obtenerCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
+        $sql = "SELECT * FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $codigo_caracterizacion);
+        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
-    public function actualizarCaracterizacion($conexion) {
-        $sql = "UPDATE caracterizacion SET valoracion_pedagogica = ?, diagnostico = ?, corresponsabilidad = ?, contexto_academico = ?, recomendaciones = ?, contexto_familiar = ?, contexto_escolar = ?, barreras_aprendizaje = ? WHERE codigo_caracterizacion = ?";
+    public function actualizarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
+        
+        $sql = "UPDATE caracterizacion SET VALORACION_PEDAGOGICA = ?, DIAGNOSTICO = ?, CORRESPONSABILIDAD = ?, CONTEXTO_ACADEMICO = ?, RECOMENDACIONES = ?, CONTEXTO_FAMILIAR = ?, CONTEXTO_ESCOLAR = ?, BARRA_DE_APRENDIZAJE = ? WHERE CODIGO_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("ssssssssi", $this->valoracion_pedagogica, $this->diagnostico, $this->corresponsabilidad, $this->contexto_academico, $this->recomendaciones, $this->contexto_familiar, $this->contexto_escolar, $this->barreras_aprendizaje, $this->codigo_caracterizacion);
+        $stmt->bind_param("ssssssssi", $this->VALORACION_PEDAGOGICA, $this->DIAGNOSTICO, $this->CORRESPONSABILIDAD, $this->CONTEXTO_ACADEMICO, $this->RECOMENDACIONES, $this->CONTEXTO_FAMILIAR, $this->CONTEXTO_ESCOLAR, $this->BARRA_DE_APRENDIZAJE, $this->CODIGO_CARACTERIZACION);
         return $stmt->execute();
     }
-    public function eliminarCaracterizacion($conexion, $codigo_caracterizacion) {
-        $sql = "DELETE FROM caracterizacion WHERE codigo_caracterizacion = ?";
+    public function eliminarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
+        $sql = "DELETE FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $codigo_caracterizacion);
+        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
         return $stmt->execute();
     }
     public function listarCaracterizaciones($conexion) {
@@ -143,21 +155,21 @@ class Caracterizacion {
         $result = $conexion->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    public function buscarCaracterizacion($conexion, $codigo_caracterizacion) {
-        $sql = "SELECT * FROM caracterizacion WHERE codigo_caracterizacion = ?";
+    public function buscarCaracterizacion($conexion, $CODIGO_CARACTERIZACION) {
+        $sql = "SELECT * FROM caracterizacion WHERE CODIGO_CARACTERIZACION = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $codigo_caracterizacion);
+        $stmt->bind_param("i", $CODIGO_CARACTERIZACION);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
     public function validarCaracterizacion() {
-        if (empty($this->valoracion_pedagogica) || empty($this->diagnostico) || empty($this->corresponsabilidad) || empty($this->contexto_academico) || empty($this->recomendaciones) || empty($this->contexto_familiar) || empty($this->contexto_escolar) || empty($this->barreras_aprendizaje)) {
+        if (empty($this->VALORACION_PEDAGOGICA) || empty($this->DIAGNOSTICO) || empty($this->CORRESPONSABILIDAD) || empty($this->CONTEXTO_ACADEMICO) || empty($this->RECOMENDACIONES) || empty($this->CONTEXTO_FAMILIAR) || empty($this->CONTEXTO_ESCOLAR) || empty($this->BARRA_DE_APRENDIZAJE)) {
             return "Todos los campos son obligatorios.";
         }
         return true;
     }
     public function validarCodigoCaracterizacion() {
-        if (empty($this->codigo_caracterizacion)) {
+        if (empty($this->CODIGO_CARACTERIZACION)) {
             return "El código de caracterización es obligatorio.";
         }
         return true;
@@ -167,12 +179,12 @@ class Caracterizacion {
 }
  
 //funcion factory
-function crearCaracterizacion($codigo_caracterizacion, $valoracion_pedagogica, $diagnostico, $corresponsabilidad, $contexto_academico, $recomendaciones, $contexto_familiar, $contexto_escolar, $barreras_aprendizaje) {
-    return new Caracterizacion($codigo_caracterizacion, $valoracion_pedagogica, $diagnostico, $corresponsabilidad, $contexto_academico, $recomendaciones, $contexto_familiar, $contexto_escolar, $barreras_aprendizaje);
+function crearCaracterizacion($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE) {
+    return new Caracterizacion($ID_CARACTERIZACION, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE);
 }
 
 
-$caracterizacion = crearCaracterizacion(1, "Valoración 1", "Diagnóstico 1", "Corresponsabilidad 1", "Contexto Académico 1", "Recomendaciones 1", "Contexto Familiar 1", "Contexto Escolar 1", "Barreras de Aprendizaje 1");
+$caracterizacion = crearCaracterizacion(1,1, "Valoración 1", "Diagnóstico 1", "CORRESPONSABILIDAD 1", "Contexto Académico 1", "RECOMENDACIONES 1", "Contexto Familiar 1", "Contexto Escolar 1", "Barreras de Aprendizaje 1");
 
 ?>
 

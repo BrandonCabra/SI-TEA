@@ -2,14 +2,14 @@
 class Conexion1
 {
     private static $host = "localhost";
-    private static $dbname = "sitea";
+    private static $dbname = "sitea4.0";
     private static $username = "root"; 
     private static $password = ""; 
 
     public static function conectar()
     {
         try {
-            $conexion = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$username, self::$password);
+            $conexion = new PDO("mysql:host=localhost;dbname=sitea4.0", "root", "");
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conexion;
         } catch (PDOException $e) {

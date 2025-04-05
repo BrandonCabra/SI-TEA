@@ -10,8 +10,8 @@ try {
 
     //funcion para generar el reporte de caracterizacion
 
-     function generarReporte($conexion, $codigo_caracterizacion, $valoracion_pedagogica, $diagnostico, $corresponsabilidad, $contexto_academico, $recomendaciones, $contexto_familiar, $contexto_escolar, $barreras_aprendizaje) {
-        $sql = "SELECT codigo_caracterizacion, valoracion_pedagogica, diagnostico, corresponsabilidad, contexto_academico, recomendaciones, contexto_familiar, contexto_escolar, barreras_aprendizaje FROM caracterizaciones";
+     function generarReporte($conexion, $CODIGO_CARACTERIZACION, $VALORACION_PEDAGOGICA, $DIAGNOSTICO, $CORRESPONSABILIDAD, $CONTEXTO_ACADEMICO, $RECOMENDACIONES, $CONTEXTO_FAMILIAR, $CONTEXTO_ESCOLAR, $BARRA_DE_APRENDIZAJE) {
+        $sql = "SELECT CODIGO_CARACTERIZACION, VALORACION_PEDAGOGICA, DIAGNOSTICO, CORRESPONSABILIDAD, CONTEXTO_ACADEMICO, RECOMENDACIONES, CONTEXTO_FAMILIAR, CONTEXTO_ESCOLAR, BARRA_DE_APRENDIZAJE FROM caracterizacion";
         $stmt = $conexion->prepare($sql);
         $stmt->execute();
         $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,25 +22,25 @@ try {
                     <tr>
                         <th>Codigo Caracterizacion</th>
                         <th>Valoracion Pedagogica</th>
-                        <th>Diagnostico</th>
-                        <th>Corresponsabilidad</th>
+                        <th>DIAGNOSTICO</th>
+                        <th>CORRESPONSABILIDAD</th>
                         <th>Contexto Academico</th>
-                        <th>Recomendaciones</th>
+                        <th>RECOMENDACIONES</th>
                         <th>Contexto Familiar</th>
                         <th>Contexto Escolar</th>
                         <th>Barreras Aprendizaje</th>
                     </tr>";
             foreach ($resultados as $fila) {
                 echo "<tr>
-                        <td>{$fila['codigo_caracterizacion']}</td>
-                        <td>{$fila['valoracion_pedagogica']}</td>
-                        <td>{$fila['diagnostico']}</td>
-                        <td>{$fila['corresponsabilidad']}</td>
-                        <td>{$fila['contexto_academico']}</td>
-                        <td>{$fila['recomendaciones']}</td>
-                        <td>{$fila['contexto_familiar']}</td>
-                        <td>{$fila['contexto_escolar']}</td>
-                        <td>{$fila['barreras_aprendizaje']}</td>
+                        <td>{$fila['CODIGO_CARACTERIZACION']}</td>
+                        <td>{$fila['VALORACION_PEDAGOGICA']}</td>
+                        <td>{$fila['DIAGNOSTICO']}</td>
+                        <td>{$fila['CORRESPONSABILIDAD']}</td>
+                        <td>{$fila['CONTEXTO_ACADEMICO']}</td>
+                        <td>{$fila['RECOMENDACIONES']}</td>
+                        <td>{$fila['CONTEXTO_FAMILIAR']}</td>
+                        <td>{$fila['CONTEXTO_ESCOLAR']}</td>
+                        <td>{$fila['BARRA_DE_APRENDIZAJE']}</td>
                       </tr>";
             }
             echo "</table>";
@@ -49,7 +49,7 @@ try {
         }
     }
     // Generar el reporte de caracterizaciones
-    generarReporte($conexion, "codigo_caracterizacion", "valoracion_pedagogica", "diagnostico", "corresponsabilidad", "contexto_academico", "recomendaciones", "contexto_familiar", "contexto_escolar", "barreras_aprendizaje");
+    generarReporte($conexion, "CODIGO_CARACTERIZACION", "VALORACION_PEDAGOGICA", "DIAGNOSTICO", "CORRESPONSABILIDAD", "CONTEXTO_ACADEMICO", "RECOMENDACIONES", "CONTEXTO_FAMILIAR", "CONTEXTO_ESCOLAR", "BARRA_DE_APRENDIZAJE");
 } catch (PDOException $e) {
     // Manejo de errores
     echo "Error al generar el reporte: " . $e->getMessage();
@@ -87,10 +87,10 @@ try {
         <tr>
             <th>Codigo Caracterizacion</th>
             <th>Valoracion Pedagogica</th>
-            <th>Diagnostico</th>
-            <th>Corresponsabilidad</th>
+            <th>DIAGNOSTICO</th>
+            <th>CORRESPONSABILIDAD</th>
             <th>Contexto Academico</th>
-            <th>Recomendaciones</th>
+            <th>RECOMENDACIONES</th>
             <th>Contexto Familiar</th>
             <th>Contexto Escolar</th>
             <th>Barreras Aprendizaje</th>
