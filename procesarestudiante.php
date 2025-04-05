@@ -1,6 +1,6 @@
 <?php
 require_once 'conexion.php';
-require_once 'estudiantes.php';
+require_once 'estudiante.php';
 
  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_estudiante = isset($_POST['id_estudiante']) ? $_POST['id_estudiante'] : null;
