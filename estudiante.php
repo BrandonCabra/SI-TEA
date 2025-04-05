@@ -171,12 +171,12 @@ class estudiante
     //Método para guardar un estudiante en la base de datos
     public function guardarEstudiante($conexion) 
     {
-        $sql = "INSERT INTO estudiantes (ID_ESTUDIANTE, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO estudiante (ID_ESTUDIANTE, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
         $stmt->bindValue(1, $this->ID_ESTUDIANTE, PDO::PARAM_INT);
         $stmt->bindValue(2, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(3, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
         $stmt->bindValue(4, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(5, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(6, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
@@ -186,38 +186,23 @@ class estudiante
         $stmt->bindValue(10, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(11, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(12, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
-
+        $stmt->bindValue(13, $this->numero_documento_padre, PDO::PARAM_INT);
+        $id = $conexion->lastInsertId();
         return $stmt->execute();
+        
     }
-    public function eliminarEstudiante($conexion, $NUMERO_DOCUMENTO_ESTUDIANTE) 
+    /*public function eliminarEstudiante($conexion, $NUMERO_DOCUMENTO_ESTUDIANTE) 
     {
-        $sql = "DELETE FROM estudiantes WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
+        $sql = "DELETE FROM estudiante WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bindValue(1, $NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
 
         return $stmt->execute();
-    }
-    public function obtenerEstudiante($conexion, $NUMERO_DOCUMENTO_ESTUDIANTE) 
-    {
-        $sql = "SELECT * FROM estudiantes WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    public function listarEstudiantes($conexion) 
-    {
-        $sql = "SELECT * FROM estudiantes";
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    }    */
 
     public function actualizarEstudiante($conexion) 
     {
-        $sql = "UPDATE estudiantes SET PRIMER_NOMBRE_ESTUDIANTE = ?, SEGUNDO_NOMBRE_ESTUDIANTE = ?, PRIMER_APELLIDO_ESTUDIANTE = ?, SEGUNDO_APELLIDO_ESTUDIANTE = ?, FECHA_NACIMIENTO = ?, DIRECCION_ESTUDIANTE = ?, TELEFONO_ESTUDIANTE = ?, CORREO_INSTITUCIONAL_ESTUDIANTE = ?, FOTOGRAFIA_ESTUDIANTE = ? WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
+        $sql = "UPDATE estudiante SET PRIMER_NOMBRE_ESTUDIANTE = ?, SEGUNDO_NOMBRE_ESTUDIANTE = ?, PRIMER_APELLIDO_ESTUDIANTE = ?, SEGUNDO_APELLIDO_ESTUDIANTE = ?, FECHA_NACIMIENTO = ?, DIRECCION_ESTUDIANTE = ?, TELEFONO_ESTUDIANTE = ?, CORREO_INSTITUCIONAL_ESTUDIANTE = ?, FOTOGRAFIA_ESTUDIANTE = ? WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bindValue(1, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(2, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
@@ -225,98 +210,18 @@ class estudiante
         $stmt->bindValue(4, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(5, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
         $stmt->bindValue(6, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(7, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_INT);
         $stmt->bindValue(8, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(9, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(10, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(10, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
 
         return $stmt->execute();
     }
-    public function buscarEstudiante($conexion, $NUMERO_DOCUMENTO_ESTUDIANTE) 
-    {
-        $sql = "SELECT * FROM estudiantes WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    public function validarPRIMER_NOMBRE_ESTUDIANTE($NUMERO_DOCUMENTO_ESTUDIANTE) 
-    {
-        return preg_match('/^\d{10}$/', $NUMERO_DOCUMENTO_ESTUDIANTE); 
-    }
-    public function validarCORREO_INSTITUCIONAL($CORREO_INSTITUCIONAL_ESTUDIANTE) 
-    {
-        return filter_var($CORREO_INSTITUCIONAL_ESTUDIANTE, FILTER_VALIDATE_EMAIL);
-    }
-    public function validarTELEFONO_ESTUDIANTE($TELEFONO_ESTUDIANTE) 
-    {
-        return preg_match('/^\d{10}$/', $TELEFONO_ESTUDIANTE);
-    }
-    public function validarFECHA_NACIMIENTO($FECHA_NACIMIENTO) 
-    {
-        $fecha = DateTime::createFromFormat('Y-m-d', $FECHA_NACIMIENTO);
-        return $fecha && $fecha->format('Y-m-d') === $FECHA_NACIMIENTO;
-    }
-    public function validarDIRECCION_ESTUDIANTE($DIRECCION_ESTUDIANTE) 
-    {
-        return !empty($DIRECCION_ESTUDIANTE);
-    }
-    public function validarNombre($nombre) 
-    {
-        return preg_match('/^[a-zA-Z\s]+$/', $nombre);
-    }
-    public function validarApellido($apellido) 
-    {
-        return preg_match('/^[a-zA-Z\s]+$/', $apellido);
-    }
-    public function validarTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO) 
-    {
-        $tipos_validos = ['CC', 'TI', 'CE', 'RC'];
-        return in_array($TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $tipos_validos);
-    }
-    public function validarFOTOGRAFIA_ESTUDIANTE($FOTOGRAFIA_ESTUDIANTE) 
-    {
-        $tipos_validos = ['image/jpeg', 'image/png', 'image/gif'];
-        return in_array($FOTOGRAFIA_ESTUDIANTE['type'], $tipos_validos);
-    }
-    public function validarEstudiante() 
-    {
-        if (!$this->validarPRIMER_NOMBRE_ESTUDIANTE($this->NUMERO_DOCUMENTO_ESTUDIANTE)) {
-            return "El número de documento debe tener 10 dígitos.";
-        }
-        if (!$this->validarCORREO_INSTITUCIONAL($this->CORREO_INSTITUCIONAL_ESTUDIANTE)) {
-            return "El correo institucional no es válido.";
-        }
-        if (!$this->validarTELEFONO_ESTUDIANTE($this->TELEFONO_ESTUDIANTE)) {
-            return "El teléfono debe tener 10 dígitos.";
-        }
-        if (!$this->validarFECHA_NACIMIENTO($this->FECHA_NACIMIENTO)) {
-            return "La fecha de nacimiento no es válida.";
-        }
-        if (!$this->validarDIRECCION_ESTUDIANTE($this->DIRECCION_ESTUDIANTE)) {
-            return "La dirección no puede estar vacía.";
-        }
-        if (!$this->validarNombre($this->PRIMER_NOMBRE_ESTUDIANTE) || !$this->validarNombre($this->SEGUNDO_NOMBRE_ESTUDIANTE)) {
-            return "Los nombres solo pueden contener letras y espacios.";
-        }
-        if (!$this->validarApellido($this->PRIMER_APELLIDO_ESTUDIANTE) || !$this->validarApellido($this->SEGUNDO_APELLIDO_ESTUDIANTE)) {
-            return "Los apellidos solo pueden contener letras y espacios.";
-        }
-        if (!$this->validarTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO($this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)) {
-            return "El tipo de documento no es válido.";
-        }
-        if (!$this->validarFOTOGRAFIA_ESTUDIANTE($this->FOTOGRAFIA_ESTUDIANTE)) {
-            return "La FOTOGRAFIA_ESTUDIANTE no es válida.";
-        }
-
-        return true;
-    }
-
+    
     // función factory
-    public static function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE) 
+    function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre) 
     {
-        return new Estudiantes($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE);
+        return new Estudiante($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
     }
 
      

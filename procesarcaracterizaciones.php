@@ -4,7 +4,6 @@ require_once 'caracterizacion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $ID_CARACTERIZACION = $_POST['ID_CARACTERIZACION'] ?? null;
     $CODIGO_CARACTERIZACION = $_POST['CODIGO_CARACTERIZACION'] ?? null;
     $VALORACION_PEDAGOGICA = $_POST['VALORACION_PEDAGOGICA'] ?? null;
     $DIAGNOSTICO = $_POST['DIAGNOSTICO'] ?? null;
