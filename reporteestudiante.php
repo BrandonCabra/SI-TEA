@@ -42,7 +42,4 @@ generarTablaEstudiante($conexion, $sqlEstudiante, "Reporte de Estudiantes");
 
 
 
-
-
-
 ?>

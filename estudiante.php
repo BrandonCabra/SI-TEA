@@ -169,7 +169,7 @@ class estudiante
         $sql = "INSERT INTO estudiante (TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE, numero_documento_padre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
+        $stmt->bindValue(1, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_INT);
         $stmt->bindValue(2, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
         $stmt->bindValue(3, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(4, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
@@ -179,24 +179,16 @@ class estudiante
         $stmt->bindValue(8, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(9, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(10, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(11, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(11, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_LOB);
         $stmt->bindValue(12, $this->numero_documento_padre, PDO::PARAM_INT);
         $id = $conexion->lastInsertId();
         return $stmt->execute();
         
     }
-    /*public function eliminarEstudiante($conexion, $NUMERO_DOCUMENTO_ESTUDIANTE) 
+    //Método para actualizar un estudiante en la base de datos
+    public function actualizarEstudiante($conexion, $ID_ESTUDIANTE):void 
     {
-        $sql = "DELETE FROM estudiante WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_STR);
-
-        return $stmt->execute();
-    }    */
-
-    public function actualizarEstudiante($conexion) 
-    {
-        $sql = "UPDATE estudiante SET PRIMER_NOMBRE_ESTUDIANTE = ?, SEGUNDO_NOMBRE_ESTUDIANTE = ?, PRIMER_APELLIDO_ESTUDIANTE = ?, SEGUNDO_APELLIDO_ESTUDIANTE = ?, FECHA_NACIMIENTO = ?, DIRECCION_ESTUDIANTE = ?, TELEFONO_ESTUDIANTE = ?, CORREO_INSTITUCIONAL_ESTUDIANTE = ?, FOTOGRAFIA_ESTUDIANTE = ? WHERE NUMERO_DOCUMENTO_ESTUDIANTE = ?";
+        $sql = "UPDATE estudiante SET NUMERO_DOCUMENTO_ESTUDIANTE = ?, PRIMER_NOMBRE_ESTUDIANTE = ?, SEGUNDO_NOMBRE_ESTUDIANTE = ?, PRIMER_APELLIDO_ESTUDIANTE = ?, SEGUNDO_APELLIDO_ESTUDIANTE = ?, FECHA_NACIMIENTO = ?, DIRECCION_ESTUDIANTE = ?, TELEFONO_ESTUDIANTE = ?, CORREO_INSTITUCIONAL_ESTUDIANTE = ?, FOTOGRAFIA_ESTUDIANTE = ?, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = ?, numero_documento_padre = ? WHERE ID_ESTUDIANTE = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bindValue(1, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(2, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
@@ -206,11 +198,36 @@ class estudiante
         $stmt->bindValue(6, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
         $stmt->bindValue(7, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_INT);
         $stmt->bindValue(8, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(9, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(9, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_LOB);
         $stmt->bindValue(10, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
+        $stmt->bindValue(11, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_INT);
+        $stmt->bindValue(12, $ID_ESTUDIANTE, PDO::PARAM_INT);
+        $stmt->bindValue(13, $this->numero_documento_padre, PDO::PARAM_INT);
 
-        return $stmt->execute();
+        
     }
+    public function borrarEstudiante($conexion):void{
+   try {
+    // Iniciar transacción
+    $conexion->beginTransaction();
+
+     // Eliminar de la tabla general
+    $sqlGeneral = "DELETE FROM estudiante WHERE ID_ESTUDIANTE = ?";
+    $stmtGeneral = $conexion->prepare($sqlGeneral);
+    $stmtGeneral->execute([$this->ID_ESTUDIANTE]);
+       
+    // Confirmar transacción
+    $conexion->commit();
+    echo "Estudiante borrado exitosamente!";
+} catch (Exception $e) {
+    // Revertir transacción si algo falla
+    $conexion->rollBack();
+    echo "Error al borrar el estudiante: " . $e->getMessage();
+}
+}
+
+
+   
 }
     
     // función factory

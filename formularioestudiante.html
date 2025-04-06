@@ -15,19 +15,19 @@
     </div>
   <div class="contenedor">
     <form action="procesarestudiante.php" method="post">
-      <label for="tipoDocumento">Tipo de Documento</label>
+      <label for="tipoDocumento">Tipo de Documento del Estudiante</label>
       <select id="tipoDocumento" name="TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO" required>
         <option selected disabled>Seleccione...</option>
         <option selected>Seleccione...</option>  
-        <option value="CC">Cédula de Ciudadanía</option>
-        <option value="CE">Cédula de Extranjería</option>
-        <option value="PP">Pasaporte</option>
+        <option value="4">TARJETA DE IDENTIDAD</option>
+        <option value="5">REGISTRO CIVIL</option>
+        <option value="1">CEDULA</option>
+        <option value="3">PASAPORTE</option>
+        <option value="2">CEDULA DE EXTRANJERÍA</option>
+        <option value="6">NO PRESENTA</option>
       </select>
 
-      <label for="documento_padre">Numero de Documento Padre</label>
-      <input type="text" id="documento_padre" name="numero_documento_padre" required>
-
-      <label for="documento">Número de Documento Estudiante</label>
+      <label for="documento">Número de Documento del Estudiante</label>
       <input type="text" id="documento" name="NUMERO_DOCUMENTO_ESTUDIANTE" required>
 
       <label for="primer_nombre">Primer Nombre</label>
@@ -53,6 +53,9 @@
 
       <label for="correo_institucional">Correo Institucional</label>
       <input type="email" id="correo_institucional" name="CORREO_INSTITUCIONAL_ESTUDIANTE" required>
+
+      <label for="documento_padre">Numero de Documento Padre</label>
+      <input type="text" id="documento_padre" name="numero_documento_padre" required>
 
       <button type="submit">Enviar</button>
     </form>
