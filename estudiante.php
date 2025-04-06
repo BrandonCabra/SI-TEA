@@ -2,6 +2,7 @@
 
 class estudiante
 {
+    //Atributos de la clase estudiante
     public $ID_ESTUDIANTE;
     public $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
     public $NUMERO_DOCUMENTO_ESTUDIANTE;
@@ -15,8 +16,7 @@ class estudiante
     public $CORREO_INSTITUCIONAL_ESTUDIANTE;
     public $FOTOGRAFIA_ESTUDIANTE;
     public $numero_documento_padre;
-
-
+//Funcion constructora
     public function __construct($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre)
     {
         $this->ID_ESTUDIANTE = $ID_ESTUDIANTE; 
@@ -33,17 +33,15 @@ class estudiante
         $this->FOTOGRAFIA_ESTUDIANTE = $FOTOGRAFIA_ESTUDIANTE;
         $this->numero_documento_padre = $numero_documento_padre;
     }
-
+//Getters y Setters
     public function getID_ESTUDIANTE()
     {
         return $this->ID_ESTUDIANTE;
     }
-
     public function setID_ESTUDIANTE($ID_ESTUDIANTE):self{
         $this->ID_ESTUDIANTE = $ID_ESTUDIANTE;
         return $this;
     }
-
     public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
     {
         return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
@@ -154,7 +152,6 @@ class estudiante
 
         return $this;
     }
-    
     public function getnumero_documento_padre()
     {
         return $this->numero_documento_padre;
@@ -165,28 +162,25 @@ class estudiante
 
         return $this;
     }
-
     //Metodos para la base de datos
-
     //Método para guardar un estudiante en la base de datos
     public function guardarEstudiante($conexion) 
     {
-        $sql = "INSERT INTO estudiante (ID_ESTUDIANTE, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO estudiante (TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, SEGUNDO_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE, SEGUNDO_APELLIDO_ESTUDIANTE, FECHA_NACIMIENTO, DIRECCION_ESTUDIANTE, TELEFONO_ESTUDIANTE, CORREO_INSTITUCIONAL_ESTUDIANTE, FOTOGRAFIA_ESTUDIANTE, numero_documento_padre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conexion = Conexion1::conectar();
         $stmt = $conexion->prepare($sql);
-        $stmt->bindValue(1, $this->ID_ESTUDIANTE, PDO::PARAM_INT);
-        $stmt->bindValue(2, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
-        $stmt->bindValue(3, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
-        $stmt->bindValue(4, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(5, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(6, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(7, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(8, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
-        $stmt->bindValue(9, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(10, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(11, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(12, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
-        $stmt->bindValue(13, $this->numero_documento_padre, PDO::PARAM_INT);
+        $stmt->bindValue(1, $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, PDO::PARAM_STR);
+        $stmt->bindValue(2, $this->NUMERO_DOCUMENTO_ESTUDIANTE, PDO::PARAM_INT);
+        $stmt->bindValue(3, $this->PRIMER_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(4, $this->SEGUNDO_NOMBRE_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(5, $this->PRIMER_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(6, $this->SEGUNDO_APELLIDO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(7, $this->FECHA_NACIMIENTO, PDO::PARAM_STR);
+        $stmt->bindValue(8, $this->DIRECCION_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(9, $this->TELEFONO_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(10, $this->CORREO_INSTITUCIONAL_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(11, $this->FOTOGRAFIA_ESTUDIANTE, PDO::PARAM_STR);
+        $stmt->bindValue(12, $this->numero_documento_padre, PDO::PARAM_INT);
         $id = $conexion->lastInsertId();
         return $stmt->execute();
         
@@ -217,18 +211,14 @@ class estudiante
 
         return $stmt->execute();
     }
+}
     
     // función factory
-    function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre) 
-    {
-        return new Estudiante($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
-    }
-
-     
+    class EstudianteFactory{
+        public static function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre)   {
+        return new estudiante($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
+    }  
 
 }
-
-
-
 
 ?>

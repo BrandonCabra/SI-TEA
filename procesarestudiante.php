@@ -2,8 +2,9 @@
 require_once 'freddy/conexion.php';
 require_once 'estudiante.php';
 
- if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ID_ESTUDIANTE = $_POST['ID_ESTUDIANTE'] ?? null;
+
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+    $ID_ESTUDIANTE = $_POST['ID_ESTUDIANTE'] ?? null; 
     $NUMERO_DOCUMENTO_ESTUDIANTE = $_POST['NUMERO_DOCUMENTO_ESTUDIANTE'] ?? null;
     $PRIMER_NOMBRE_ESTUDIANTE = $_POST['PRIMER_NOMBRE_ESTUDIANTE'] ?? null;
     $SEGUNDO_NOMBRE_ESTUDIANTE = $_POST['SEGUNDO_NOMBRE_ESTUDIANTE'] ?? null;
@@ -17,22 +18,26 @@ require_once 'estudiante.php';
     $numero_documento_padre = $_POST['numero_documento_padre'] ?? null;
     $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $_POST['TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO'] ?? null;
     
+    
+    $estudiante = EstudianteFactory::crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre); //
+    // Validar los datos del estudiante
+    
+
+    if (empty($NUMERO_DOCUMENTO_ESTUDIANTE) || empty($PRIMER_NOMBRE_ESTUDIANTE) || empty($PRIMER_APELLIDO_ESTUDIANTE)) { 
+        echo "Los campos obligatorios no pueden estar vacíos.";
+        exit; 
+    }
+
 // Guardar el estudiante en la base de datos
 
-function crearEstudiante($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre) 
-{
-    return new Estudiante($ID_ESTUDIANTE,$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
-}
-
-
-    try {
-        $estudiante = crearEstudiante ($ID_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE, $PRIMER_NOMBRE_ESTUDIANTE, $SEGUNDO_NOMBRE_ESTUDIANTE, $PRIMER_APELLIDO_ESTUDIANTE, $SEGUNDO_APELLIDO_ESTUDIANTE, $FECHA_NACIMIENTO, $DIRECCION_ESTUDIANTE, $TELEFONO_ESTUDIANTE, $CORREO_INSTITUCIONAL_ESTUDIANTE, $FOTOGRAFIA_ESTUDIANTE, $numero_documento_padre);
-        $conexion = Conexion1::conectar();
-        $estudiante->guardarEstudiante($conexion1);
-        echo "Estudiante registrado exitosamente";
-    } catch (Exception $e) {
-        echo "Error en la conexión a la base de datos. Intente más tarde: " . $e->getMessage();
-    }
+    $conexion = Conexion1::conectar(); // 
+    $resultado = $estudiante->guardarEstudiante($conexion); 
+    if ($resultado) { 
+        echo "Estudiante guardado exitosamente."; 
+    } else {
+        echo "Error al guardar el estudiante."; 
+    } 
  }
+ 
 
 ?>
