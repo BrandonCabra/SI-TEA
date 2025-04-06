@@ -2,6 +2,7 @@
 require_once 'freddy/conexion.php';
 require_once 'caracterizacion.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ID_CARACTERIZACION = $_POST['ID_CARACTERIZACION'] ?? null;
     $CODIGO_CARACTERIZACION = $_POST['CODIGO_CARACTERIZACION'] ?? null;

@@ -56,6 +56,37 @@ try {
     // Manejo de errores
     echo "Error al generar el reporte: " . $e->getMessage();
 }
+
+$sql = "SELECT DIAGNOSTICO, COUNT(*) AS total FROM caracterizacion GROUP BY DIAGNOSTICO";
+$stmt = $conexion->prepare($sql);
+$stmt->execute();
+$resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<h3>Reporte de Diagnósticos de Caracterización</h3>";
+echo "<table border='1'>";
+echo "<tr><th>Diagnóstico</th><th>Total</th></tr>";
+foreach ($resultados as $row) {
+    echo "<tr>";
+    echo "<td>{$row['DIAGNOSTICO']}</td>";
+    echo "<td>{$row['total']}</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
+// Generar datos para el gráfico en formato JSON
+$data = [];
+$data[] = ['DIAGNOSTICO', 'total']; // Encabezados para el gráfico
+foreach ($resultados as $row) {
+    $data[] = [$row['DIAGNOSTICO'], (int)$row['total']];
+}
+
+echo json_encode($data); // Convertir el array PHP a JSON
+?>
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,7 +114,37 @@ try {
     </style>
     <!-- Google chart -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        
+
+        var data = google.visualization.arrayToDataTable([
+          ['DIAGNOSTICO', 'total'],
+          ['TDAH', 11],
+          ['DISCALCULIA', 2],
+          ['DISLEXIA',  2],
+          ['DISGRAFIA', 2],
+          ['otro', 1]
+        ]);
+
+        var options = {
+          title: 'Diagnosticos'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('grafico'));
+
+        chart.draw(data, options);
+
+        document.getElementById('variable').value=chart.getImageURI()
+
+      }
+    </script>
+
+
 </head>
 <body>
     <h1>Reporte de Caracterizaciones</h1>
@@ -108,7 +169,7 @@ try {
     <h1 class="mt-5 text-center border borde">Reportes graficos</h1>
     <div class="container mt-5">
         <input type="hidden" name="variable" id="variable">
-        <div id="grafico"></div>
+        <div id="grafico" style="width: 100%; height: 500px;"></div>
 
         <input type="submit" value="Generar PDF" class="btn btn-danger mt-5 mr-5 float-right" onclick="generarReporte()"/>
     
