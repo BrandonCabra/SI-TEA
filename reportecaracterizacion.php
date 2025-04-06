@@ -81,6 +81,9 @@ try {
             background-color: #f2f2f2;
         }
     </style>
+    <!-- Google chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
 </head>
 <body>
     <h1>Reporte de Caracterizaciones</h1>
@@ -101,6 +104,14 @@ try {
         // Aquí se generaría el contenido de la tabla con los datos obtenidos de la base de datos
         ?>
     </table>
+
+    <h1 class="mt-5 text-center border borde">Reportes graficos</h1>
+    <div class="container mt-5">
+        <input type="hidden" name="variable" id="variable">
+        <div id="grafico"></div>
+
+        <input type="submit" value="Generar PDF" class="btn btn-danger mt-5 mr-5 float-right" onclick="generarReporte()"/>
+    
 </body>
 
 </html>

@@ -1,3 +1,26 @@
+<?php
+require_once 'freddy/conexion.php';
+require_once 'caracterizacion.php';
+$conexion = Conexion1::conectar();
+
+// Consulta para obtener estudiantes sin caracterización
+$sql = "SELECT ID_ESTUDIANTE, NUMERO_DOCUMENTO_ESTUDIANTE, PRIMER_NOMBRE_ESTUDIANTE, PRIMER_APELLIDO_ESTUDIANTE
+        FROM estudiante
+        WHERE ID_ESTUDIANTE NOT IN (
+            SELECT ESTUDIANTE_ID_ESTUDIANTE FROM caracterizacion
+        )";
+
+try {
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    $estudiantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error al obtener estudiantes: " . $e->getMessage());
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,10 +35,20 @@
   <div class="contenedor">
     <form id="caracterizacionForm" action="procesarcaracterizaciones.php" method="POST"> 
 
-      <label for="id_estudiante">ID Estudiante</label>
-      <input type="text" id="id_estudiante" name="ESTUDIANTE_ID_ESTUDIANTE" required placeholder="Ingresa el ID del estudiante">
+    <label for="ESTUDIANTE_ID_ESTUDIANTE">Seleccionar Estudiante:</label>
+    <select name="ESTUDIANTE_ID_ESTUDIANTE" id="ESTUDIANTE_ID_ESTUDIANTE" required>
+        <option value="">--Selecciona un Estudiante--</option>
+        <?php foreach ($estudiantes as $estudiante): ?>
+            <option value="<?= $estudiante['ID_ESTUDIANTE']; ?>">
+            ID: <?= $estudiante['ID_ESTUDIANTE']; ?> Documento: <?= $estudiante['NUMERO_DOCUMENTO_ESTUDIANTE']; ?> - <?= $estudiante['PRIMER_NOMBRE_ESTUDIANTE']; ?> <?= $estudiante['PRIMER_APELLIDO_ESTUDIANTE']; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
 
-      <label for="CODIGO_CARACTERIZACION">Código Caracterización</label>
+        <br><br>
+      
+        
+     <label for="CODIGO_CARACTERIZACION">Código Caracterización</label>
       <input type="text" id="CODIGO_CARACTERIZACION" name="CODIGO_CARACTERIZACION" required placeholder="Ingresa el código">
 
       <label for="VALORACION_PEDAGOGICA">Valoración Pedagógica</label>
@@ -25,7 +58,7 @@
       <input type="text" id="DIAGNOSTICO" name="DIAGNOSTICO" required placeholder="Escribe el diagnóstico">
 
       <label for="CORRESPONSABILIDAD">Corresponsabilidad</label>
-      <input type="text" id="CORRESPONSABILIDAD" name="CORRESPONSABILIDAD" required placeholder="Describe la CORRESPONSABILIDAD">
+      <input type="text" id="CORRESPONSABILIDAD" name="CORRESPONSABILIDAD" required placeholder="Describe la Corresponsabilidad">
 
       <label for="CONTEXTO_ACADEMICO">Contexto Académico</label>
       <input type="text" id="CONTEXTO_ACADEMICO" name="CONTEXTO_ACADEMICO" required placeholder="Detalla el contexto académico">
