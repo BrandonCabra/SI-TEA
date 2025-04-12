@@ -1,0 +1,183 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f8f9fa; /* Fondo claro sin imagen */
+}
+
+/* Estilo del header */
+.header-logo {
+  max-width: 70px; /* Reducido el tamaño un poco más */
+  height: auto;
+  margin-right: 10px;
+}
+
+.navbar {
+  background-color: #ffffff; /* Color de fondo blanco para la barra de navegación */
+}
+
+.navbar-nav {
+  gap: 20px; /* Espacio entre los elementos de la navegación */
+}
+
+.nav-link {
+  color: #0047A2; /* Azul oscuro para los enlaces de navegación */
+}
+
+.nav-link:hover {
+  color: #1e68c9; /* Azul más claro en hover */
+}
+
+.boton {
+  background-color: #0047A2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.boton:hover {
+  background-color: #1fa4f6; /* Cambiar color de fondo al pasar el cursor */
+  color: #ffffff; /* Cambiar color de texto al pasar el cursor */
+}
+
+/* Estilo del main */
+main {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1400px; /* Limitar el ancho máximo para mejor presentación */
+  flex-grow: 1; /* Asegurar que el main crezca para llenar el espacio disponible */
+}
+
+.text-center {
+  text-align: center; /* Centrar el texto */
+}
+
+.col-md-6.text-center {
+  margin-top: 60px; /* Bajar el texto para alinearlo con la imagen */
+}
+
+.col-md-6.text-center p {
+  font-size: 1.2rem; /* Aumentar el tamaño del párrafo */
+  margin-top: 50px; /* Separar mucho más el párrafo del título */
+}
+
+/* Estilo del título "Manual de Usuarios" */
+.col-md-6.text-center h1 {
+  color: #006eff; /* Cambiar color del título al color del hover de los botones */
+}
+
+/* Ajuste de las tarjetas para que tengan el mismo tamaño y más espacio entre ellas */
+.card {
+  background-color: #ffffff; /* Fondo blanco para el cuadro */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  max-width: 600px; /* Aumentar el ancho máximo para los cuadros */
+  height: 550px; /* Ajustar la altura para que los botones no queden tan abajo */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Asegurar que el contenido se distribuya uniformemente */
+  margin-top: 60px; /* Ajustar el margen superior para bajar los cuadros */
+  width: 100%; /* Asegurar que los cuadros ocupen el ancho completo */
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  height: 300px; /* Ajustar la altura fija para las imágenes */
+  object-fit: cover; /* Asegurar que la imagen se ajuste al cuadro sin recortarse */
+  object-position: top; /* Alinear la imagen en la parte superior */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Asegurar que el contenido se alinee al inicio */
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1; /* Asegura que el cuerpo de la tarjeta crezca para llenar el espacio */
+}
+
+.card-text {
+  color: #333;
+  margin-bottom: 10px; /* Reducir el margen inferior para acercar el botón */
+  flex-grow: 1; /* Asegura que el contenido del texto crezca para llenar el espacio */
+}
+
+.card button {
+  background-color: #0047A2;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  margin-top: auto; /* Empujar el botón hacia la parte inferior */
+  align-self: center; /* Centrar el botón debajo del párrafo */
+}
+
+.card button:hover {
+  background-color: #1fa4f6; /* Cambiar color de fondo al pasar el cursor */
+  color: #ffffff; /* Cambiar color de texto al pasar el cursor */
+}
+
+/* Aumentar espacio entre las columnas */
+.row.mt-4 {
+  margin-top: 250px; /* Ajustar el margen superior para bajar los cuadros */
+}
+
+.row.mt-4 .col-md-3 {
+  margin-bottom: 20px; /* Añadir margen inferior */
+}
+
+/* Estilo del footer */
+footer {
+  background-color: #f8f9fa; /* Fondo claro para el footer */
+  border-radius: 10px; /* Añadir bordes redondeados */
+  margin: 20px auto;
+  max-width: 1200px; /* Limitar el ancho máximo para mejor presentación */
+  padding: 20px; /* Asegurar el relleno del contenido */
+  flex-shrink: 0; /* Asegurar que el footer no se encoja */
+}
+
+footer p {
+  margin: 0;
+  color: #000000;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  margin: 0 10px;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 60px;
+}
+
+.link-primary {
+  color: #0047A2;
+}
+
+.link-primary:hover {
+  color: #1e68c9;
+}

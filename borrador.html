@@ -1,9 +1,0 @@
-<label for="ESTUDIANTE_ID_ESTUDIANTE">Seleccionar Estudiante:</label>
-    <select name="ESTUDIANTE_ID_ESTUDIANTE" id="ESTUDIANTE_ID_ESTUDIANTE" required>
-        <option value="">--Selecciona un Estudiante--</option>
-        <?php foreach ($estudiantes as $estudiante): ?>
-            <option value="<?= $estudiante['ID_ESTUDIANTE']; ?>">
-                Documento: <?= $estudiante['NUMERO_DOCUMENTO_ESTUDIANTE']; ?> - <?= $estudiante['PRIMER_NOMBRE_ESTUDIANTE']; ?> <?= $estudiante['PRIMER_APELLIDO_ESTUDIANTE']; ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
