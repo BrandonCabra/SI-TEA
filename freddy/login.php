@@ -3,7 +3,7 @@ session_start(); // Iniciar sesión para guardar datos del usuario
 
 // Configuración de conexión a la base de datos
 $host = 'localhost';
-$db = 'sitea'; // Nombre de tu base de datos
+$db = 'sitea4'; // Nombre de tu base de datos
 $user = 'root'; // Usuario de la base de datos
 $password = ''; // Contraseña de la base de datos
 

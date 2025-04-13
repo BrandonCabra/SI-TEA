@@ -32,43 +32,44 @@
     <main>
       <div class="imagen-container"></div>
       <div class="login-container">
-        <form class="row g-1 login-form1" action="procesar.php" method="POST">
+        <form class="row g-1 login-form1" action="controladores/procesar.php" method="POST">
           <h2>Regístrate</h2>
           <div class="col-12">
-            <label for="primer_nombre">Nombres:</label>
-            <input type="text" id="primer_nombre" name="primer_nombre" class="form-control" required>
+            <label for="PRIMER_NOMBRE">Nombres:</label>
+            <input type="text" id="PRIMER_NOMBRE" name="PRIMER_NOMBRE" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="primer_apellido">Apellidos:</label>
-            <input type="text" id="primer_apellido" name="primer_apellido" class="form-control" required>
+            <label for="PRIMER_APELLIDO">Apellidos:</label>
+            <input type="text" id="PRIMER_APELLIDO" name="PRIMER_APELLIDO" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="numero_documento">Número de Documento:</label>
-            <input type="text" id="numero_documento" name="numero_documento" class="form-control" required>
+            <label for="NUMERO_DOCUMENTO">Número de Documento:</label>
+            <input type="text" id="NUMERO_DOCUMENTO" name="NUMERO_DOCUMENTO" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="telefono_usuario">Teléfono:</label>
-            <input type="tel" id="telefono_usuario" name="telefono_usuario" class="form-control" required>
+            <label for="TELEFONO_USUARIO">Teléfono:</label>
+            <input type="tel" id="TELEFONO_USUARIO" name="TELEFONO_USUARIO" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="direccion_usuario">Dirección:</label>
-            <input type="text" id="direccion_usuario" name="direccion_usuario" class="form-control" required>
+            <label for="DIRECCION_USUARIO">Dirección:</label>
+            <input type="text" id="DIRECCION_USUARIO" name="DIRECCION_USUARIO" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="correo_institucional">Correo Institucional:</label>
+            <label for="CORREO_INSTITUCIONAL">Correo Institucional:</label>
             <input type="email" id="correo_institucional" name="correo_institucional" class="form-control" required>
           </div>
           <div class="col-12">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" class="form-control" required>
+            <label for="PASSWORD">Contraseña:</label>
+            <input type="PASSWORD" id="PASSWORD" name="PASSWORD" class="form-control" required>
           </div>
           <div class="col-12">
             <label for="rol">Rol:</label>
-            <select id="rol" name="rol" class="form-control" required>
-              <option value="estudiante">Estudiante</option>
-              <option value="profesor">Profesor</option>
-              <option value="psicoorientador">Psicoorientador</option>
-              <option value="administrador">Administrador</option>
+            <select id="rol" name="ROL_ID_ROL" class="form-select" required>
+              <option value="5">Estudiante</option>
+              <option value="1">Profesor</option>
+              <option value="2">Psicoorientador</option>
+              <option value="4">Administrador</option>
+              <option value="3">Padre familia</option>
             </select>
           </div>
           <div class="col-12">

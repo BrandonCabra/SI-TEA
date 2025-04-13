@@ -1,18 +1,18 @@
 <?php
-require_once 'conexion.php'; // Clase para conectar a la base de datos
-require_once 'clases.php';   // Clases adicionales necesarias
+require_once 'freddy/conexion.php'; // Clase para conectar a la base de datos
+require_once "modelos/usuario.php";   // Clases adicionales necesarias
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Capturar los datos enviados desde el formulario
-    $primer_nombre = $_POST['primer_nombre'] ?? null;
-    $primer_apellido = $_POST['primer_apellido'] ?? null;
-    $correo_institucional = $_POST['correo_institucional'] ?? null;
-    $direccion_usuario = $_POST['direccion_usuario'] ?? null;
-    $numero_documento = $_POST['numero_documento'] ?? null;
-    $password = $_POST['password'] ?? null;
+    $PRIMER_NOMBRE = $_POST['PRIMER_NOMBRE'] ?? null;
+    $PRIMER_APELLIDO = $_POST['PRIMER_APELLIDO'] ?? null;
+    $CORREO_INSTITUCIONAL = $_POST['CORREO_INSTITUCIONAL'] ?? null;
+    $DIRECCION_USUARIO = $_POST['DIRECCION_USUARIO'] ?? null;
+    $NUMERO_DOCUMENTO = $_POST['NUMERO_DOCUMENTO'] ?? null;
+    $PASSWORD = $_POST['PASSWORD'] ?? null;
 
     // Verificar que los campos obligatorios están presentes
-    if (!$primer_nombre || !$primer_apellido || !$correo_institucional || !$direccion_usuario || !$numero_documento || !$password) {
+    if (!$PRIMER_NOMBRE || !$PRIMER_APELLIDO || !$CORREO_INSTITUCIONAL || !$DIRECCION_USUARIO || !$NUMERO_DOCUMENTO || !$PASSWORD) {
         echo "Error: Todos los campos obligatorios deben estar llenos.";
         exit();
     }
@@ -23,19 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Preparar consulta para insertar los datos en la tabla 'usuario'
         $stmt = $conexion->prepare("
-            INSERT INTO usuario 
-            (primer_nombre, primer_apellido, correo_institucional, direccion_usuario, numero_documento, password) 
+            INSERT INTO usuarios 
+            (PRIMER_NOMBRE, PRIMER_APELLIDO, CORREO_INSTITUCIONAL, DIRECCION_USUARIO, NUMERO_DOCUMENTO, PASSWORD) 
             VALUES (?, ?, ?, ?, ?, ?)
         ");
 
         // Ejecutar la consulta con los valores protegidos
         $stmt->execute([
-            $primer_nombre,
-            $primer_apellido,
-            $correo_institucional,
-            $direccion_usuario,
-            $numero_documento,
-            password_hash($password, PASSWORD_BCRYPT) // Encriptar la contraseña
+            $PRIMER_NOMBRE,
+            $PRIMER_APELLIDO,
+            $CORREO_INSTITUCIONAL,
+            $DIRECCION_USUARIO,
+            $NUMERO_DOCUMENTO,
+            PASSWORD_hash($PASSWORD, PASSWORD_BCRYPT) // Encriptar la contraseña
         ]);
 
         // Mostrar el mensaje de éxito antes de la redirección
