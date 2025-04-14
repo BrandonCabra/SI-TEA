@@ -56,7 +56,7 @@
           </div>
           <div class="col-12">
             <label for="CORREO_INSTITUCIONAL">Correo Institucional:</label>
-            <input type="email" id="correo_institucional" name="correo_institucional" class="form-control" required>
+            <input type="email" id="CORREO_INSTITUCIONAL" name="correo_institucional" class="form-control" required>
           </div>
           <div class="col-12">
             <label for="PASSWORD">Contraseña:</label>
