@@ -2,62 +2,107 @@
 // Clase abstracta base para los usuarios
 abstract class UsuarioAbstracto
 {
-    protected $primer_nombre;
-    protected $username;
-    protected $password;
+    protected $PRIMER_NOMBRE;
+    protected $PRIMER_APELLIDO;
+    protected $NUMERO_DOCUMENTO;
+    protected $PASSWORD;
 
-    public function __construct($primer_nombre, $username, $password)
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO,$PASSWORD)
     {
-        $this->primer_nombre = $primer_nombre;
-        $this->username = $username;
-        $this->password = $password;
+        $this->PRIMER_NOMBRE = $PRIMER_NOMBRE;
+        $this->PRIMER_APELLIDO = $PRIMER_APELLIDO;
+        $this->NUMERO_DOCUMENTO = $NUMERO_DOCUMENTO;
+        $this->PASSWORD = $PASSWORD;
     }
 
     // Métodos abstractos para implementación en clases derivadas
     abstract public function validarUsuario();
-    abstract public function validarPassword();
+    abstract public function validarNUMERO_DOCUMENTO();
+    abstract public function validarPASSWORD();
+
+
 
     // Getters para los atributos protegidos
-    public function getPrimerNombre()
+    public function getPRIMER_NOMBRE()
     {
-        return $this->primer_nombre;
+        return $this->PRIMER_NOMBRE;
     }
 
-    public function getUsername()
+    public function getPRIMER_APELLIDO()
     {
-        return $this->username;
+        return $this->PRIMER_APELLIDO;
     }
+    public function getNUMERO_DOCUMENTO()
+    {
+        return $this->NUMERO_DOCUMENTO;
+    }
+    public function getPASSWORD()
+    {
+        return $this->PASSWORD;
+    }
+    // Setters para los atributos protegidos
+    public function setPRIMER_NOMBRE($PRIMER_NOMBRE)
+    {
+        $this->PRIMER_NOMBRE = $PRIMER_NOMBRE;
+    }
+    public function setPRIMER_APELLIDO($PRIMER_APELLIDO)
+    {
+        $this->PRIMER_APELLIDO = $PRIMER_APELLIDO;
+    }
+    public function setNUMERO_DOCUMENTO($NUMERO_DOCUMENTO)
+    {
+        $this->NUMERO_DOCUMENTO = $NUMERO_DOCUMENTO;
+    }
+    public function setPASSWORD($PASSWORD)
+    {
+        $this->PASSWORD = $PASSWORD;
+    }
+
 }
 
-// Clase Usuario que hereda de UsuarioAbstracto
-class Usuario extends UsuarioAbstracto
+// Clase Padre que hereda de UsuarioAbstracto
+class Padre extends UsuarioAbstracto
 {
-    private $correo;
-    private $direccion;
+    private $CORREO_USUARIO;
+    private $DIRECCION_USUARIO;
+    private $ROL_ID_ROL;
+    private $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    private $NUMERO_DOCUMENTO_ESTUDIANTE;
 
-    public function __construct($primer_nombre, $correo, $direccion, $username, $password)
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO, $DIRECCION_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $NUMERO_DOCUMENTO_ESTUDIANTE)
     {
-        parent::__construct($primer_nombre, $username, $password);
-        $this->correo = $correo;
-        $this->direccion = $direccion;
+        parent::__construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD);
+        $this->CORREO_USUARIO = $CORREO_USUARIO;
+        $this->DIRECCION_USUARIO = $DIRECCION_USUARIO;
+        $this->ROL_ID_ROL = $ROL_ID_ROL;
+        $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+        $this->NUMERO_DOCUMENTO_ESTUDIANTE = $NUMERO_DOCUMENTO_ESTUDIANTE;
     }
-
+    
+    // Métodos de validación
     public function validarUsuario()
     {
-        return strlen($this->username) >= 5 ? true : "El nombre de usuario debe tener al menos 5 caracteres.";
+        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
     }
 
-    public function validarPassword()
+    public function validarNUMERO_DOCUMENTO()
     {
-        if (strlen($this->password) < 8) {
+        // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
+    }
+
+    public function validarPASSWORD()
+    {
+        if (strlen($this->PASSWORD) < 8) {
             return "La contraseña debe tener al menos 8 caracteres.";
         }
 
-        if (!preg_match('/[a-z]/', $this->password) || !preg_match('/[A-Z]/', $this->password)) {
+        if (!preg_match('/[a-z]/', $this->PASSWORD) || !preg_match('/[A-Z]/', $this->PASSWORD)) {
             return "La contraseña debe incluir mayúsculas y minúsculas.";
         }
 
-        if (!preg_match('/[\W_]/', $this->password)) {
+        if (!preg_match('/[\W_]/', $this->PASSWORD)) {
             return "La contraseña debe incluir al menos un carácter especial.";
         }
 
@@ -65,103 +110,301 @@ class Usuario extends UsuarioAbstracto
     }
 
     // Getters para atributos privados
-    public function getCorreo()
+    public function getCORREO_USUARIO()
     {
-        return $this->correo;
+        return $this->CORREO_USUARIO;
     }
 
-    public function getDireccion()
+    public function getDIRECCION_USUARIO()
     {
-        return $this->direccion;
+        return $this->DIRECCION_USUARIO;
+    }
+    public function getROL_ID_ROL()
+    {
+        return $this->ROL_ID_ROL;
+    }
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
+    {
+        return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+    public function getNUMERO_DOCUMENTO_ESTUDIANTE()
+    {
+        return $this->NUMERO_DOCUMENTO_ESTUDIANTE;
     }
 }
 
 // Clases específicas para roles
-class Estudiante extends Usuario
+class Estudiante extends UsuarioAbstracto
 {
-    private $grado;
+    private $CODIGO_GRADO;
+    private $NUMERO_DOCUMENTO_ESTUDIANTE;
+    private $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    private $ROL_ID_ROL;
+    private $CORREO_INSTITUCIONAL;
+    private $numero_documento_padre;
 
-    public function __construct($primer_nombre, $correo, $direccion, $username, $password, $grado)
+
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_INSTITUCIONAL, $CODIGO_GRADO, $NUMERO_DOCUMENTO_ESTUDIANTE, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $ROL_ID_ROL, $numero_documento_padre)
     {
-        parent::__construct($primer_nombre, $correo, $direccion, $username, $password);
-        $this->grado = $grado;
+        parent::__construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD);
+        $this->CORREO_INSTITUCIONAL = $CORREO_INSTITUCIONAL;
+        $this->CODIGO_GRADO = $CODIGO_GRADO;
+        $this->NUMERO_DOCUMENTO_ESTUDIANTE = $NUMERO_DOCUMENTO_ESTUDIANTE;
+        $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+        $this->ROL_ID_ROL = $ROL_ID_ROL;
+        $this->numero_documento_padre = $numero_documento_padre;
     }
 
-    public function getGrado()
+    // Métodos de validación
+    public function validarUsuario()
     {
-        return $this->grado;
+        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
+    }
+
+    public function validarNUMERO_DOCUMENTO()
+    {
+        // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
+    }
+    public function validarPASSWORD()
+    {
+        if (strlen($this->PASSWORD) < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!preg_match('/[a-z]/', $this->PASSWORD) || !preg_match('/[A-Z]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir mayúsculas y minúsculas.";
+        }
+
+        if (!preg_match('/[\W_]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir al menos un carácter especial.";
+        }
+
+        return true;
+    }
+    // Getters para atributos privados
+    public function getCORREO_INSTITUCIONAL()
+    {
+        return $this->CORREO_INSTITUCIONAL;
+    }
+    public function getNUMERO_DOCUMENTO_ESTUDIANTE()
+    {
+        return $this->NUMERO_DOCUMENTO_ESTUDIANTE;
+    }
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
+    {
+        return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+    public function getROL_ID_ROL()
+    {
+        return $this->ROL_ID_ROL;
+    }
+    public function getNUMERO_DOCUMENTO_PADRE()
+    {
+        return $this->numero_documento_padre;
+    }
+
+    public function getCODIGO_GRADO()
+    {
+        return $this->CODIGO_GRADO;
     }
 }
 
-class Profesor extends Usuario
+class Profesor extends UsuarioAbstracto
 {
-    private $materia;
+    private $CODIGO_MATERIA;
+    private $ROL_ID_ROL;
+    private $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
 
-    public function __construct($primer_nombre, $correo, $direccion, $username, $password, $materia)
+
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CODIGO_MATERIA, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)
     {
-        parent::__construct($primer_nombre, $correo, $direccion, $username, $password);
-        $this->materia = $materia;
+        parent::__construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD);
+        $this->CODIGO_MATERIA = $CODIGO_MATERIA;
+        $this->ROL_ID_ROL = $ROL_ID_ROL;
+        $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
     }
 
-    public function getMateria()
+    public function getCODIGO_MATERIA()
     {
-        return $this->materia;
+        return $this->CODIGO_MATERIA;
+    }
+    public function getROL_ID_ROL()
+    {
+        return $this->ROL_ID_ROL;
+    }
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
+    {
+        return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+
+    // Métodos de validación
+    public function validarUsuario()
+    {
+        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
+    }
+    public function validarNUMERO_DOCUMENTO()
+    {
+        // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
+    }
+    public function validarPASSWORD()
+    {
+        if (strlen($this->PASSWORD) < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!preg_match('/[a-z]/', $this->PASSWORD) || !preg_match('/[A-Z]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir mayúsculas y minúsculas.";
+        }
+
+        if (!preg_match('/[\W_]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir al menos un carácter especial.";
+        }
+
+        return true;
     }
 }
 
-class Psicoorientador extends Usuario
+class Psicoorientador extends UsuarioAbstracto
 {
-    private $especialidad;
+    private $TELEFONO_USUARIO;
+    private $CORREO_INSTITUCIONAL;
+    private $ROL_ID_ROL;
+    private $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
 
-    public function __construct($primer_nombre, $correo, $direccion, $username, $password, $especialidad)
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $CORREO_INSTITUCIONAL, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)
     {
-        parent::__construct($primer_nombre, $correo, $direccion, $username, $password);
-        $this->especialidad = $especialidad;
+        parent::__construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD);
+        $this->TELEFONO_USUARIO = $TELEFONO_USUARIO;
+        $this->CORREO_INSTITUCIONAL = $CORREO_INSTITUCIONAL;
+        $this->ROL_ID_ROL = $ROL_ID_ROL;
+        $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+    public function validarNUMERO_DOCUMENTO()
+    {
+        // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
     }
 
-    public function getEspecialidad()
+    public function validarUsuario()
     {
-        return $this->especialidad;
+        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
     }
+    public function validarPASSWORD()
+    {
+        if (strlen($this->PASSWORD) < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!preg_match('/[a-z]/', $this->PASSWORD) || !preg_match('/[A-Z]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir mayúsculas y minúsculas.";
+        }
+
+        if (!preg_match('/[\W_]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir al menos un carácter especial.";
+        }
+
+        return true;
+    }
+    public function getTELEFONO_USUARIO()
+    {
+        return $this->TELEFONO_USUARIO;
+    }
+    public function getCORREO_INSTITUCIONAL()
+    {
+        return $this->CORREO_INSTITUCIONAL;
+    }
+    public function getROL_ID_ROL()
+    {
+        return $this->ROL_ID_ROL;
+    }
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
+    {
+        return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+
 }
 
-class Administrador extends Usuario
+class Administrador extends UsuarioAbstracto
 {
-    private $nivel_acceso;
+    private $TELEFONO_USUARIO;
+    private $ROL_ID_ROL;
+    private $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
 
-    public function __construct($primer_nombre, $correo, $direccion, $username, $password, $nivel_acceso)
+    public function __construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO)
     {
-        parent::__construct($primer_nombre, $correo, $direccion, $username, $password);
-        $this->nivel_acceso = $nivel_acceso;
+        parent::__construct($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD);
+        $this->TELEFONO_USUARIO = $TELEFONO_USUARIO;
+        $this->ROL_ID_ROL = $ROL_ID_ROL;
+        $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
     }
 
-    public function getNivelAcceso()
+    public function validarUsuario()
     {
-        return $this->nivel_acceso;
+        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
     }
+    public function validarNUMERO_DOCUMENTO()
+    {
+        // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
+        return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
+    }
+    public function validarPASSWORD()
+    {
+        if (strlen($this->PASSWORD) < 8) {
+            return "La contraseña debe tener al menos 8 caracteres.";
+        }
+
+        if (!preg_match('/[a-z]/', $this->PASSWORD) || !preg_match('/[A-Z]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir mayúsculas y minúsculas.";
+        }
+
+        if (!preg_match('/[\W_]/', $this->PASSWORD)) {
+            return "La contraseña debe incluir al menos un carácter especial.";
+        }
+
+        return true;
+    }
+    public function getTELEFONO_USUARIO()
+    {
+        return $this->TELEFONO_USUARIO;
+    }
+    public function getROL_ID_ROL()
+    {
+        return $this->ROL_ID_ROL;
+    }
+    public function getTIPO_DOCUMENTO_ID_TIPO_DOCUMENTO()
+    {
+        return $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
+    }
+
+
 }
 
 // Clase UsuarioFactory para instanciar usuarios
-class UsuarioFactory
+function crearUsuario($ROL_ID_ROL, $PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO = null, $DIRECCION_USUARIO = null, $CODIGO_MATERIA = null, $CODIGO_GRADO = null, $TELEFONO_USUARIO = null, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $CORREO_INSTITUCIONAL = null, $numero_documento_padre = null)
 {
-    public static function crearEstudiante($primer_nombre, $correo, $direccion, $username, $password, $grado)
-    {
-        return new Estudiante($primer_nombre, $correo, $direccion, $username, $password, $grado);
-    }
 
-    public static function crearProfesor($primer_nombre, $correo, $direccion, $username, $password, $materia)
-    {
-        return new Profesor($primer_nombre, $correo, $direccion, $username, $password, $materia);
-    }
-
-    public static function crearPsicoorientador($primer_nombre, $correo, $direccion, $username, $password, $especialidad)
-    {
-        return new Psicoorientador($primer_nombre, $correo, $direccion, $username, $password, $especialidad);
-    }
-
-    public static function crearAdministrador($primer_nombre, $correo, $direccion, $username, $password, $nivel_acceso)
-    {
-        return new Administrador($primer_nombre, $correo, $direccion, $username, $password, $nivel_acceso);
+    switch ($ROL_ID_ROL) {
+        case 'Padre':
+            return new Padre($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO, $DIRECCION_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $numero_documento_padre);
+        case 'Estudiante':
+            return new Estudiante($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_INSTITUCIONAL, $CODIGO_GRADO, $NUMERO_DOCUMENTO, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $ROL_ID_ROL, $numero_documento_padre);
+        case 'Profesor':
+            return new Profesor($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CODIGO_MATERIA, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+        case 'Psicoorientador': 
+            return new Psicoorientador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $CORREO_INSTITUCIONAL, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+        case 'Administrador':
+            return new Administrador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+        default:
+            throw new Exception("Rol no válido: $ROL_ID_ROL");
+        
+      
     }
 }
+
 ?>

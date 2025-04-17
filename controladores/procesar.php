@@ -1,18 +1,18 @@
 <?php
-require_once 'freddy/conexion.php'; // Clase para conectar a la base de datos
-require_once "modelos/usuario.php";   // Clases adicionales necesarias
+require_once '../freddy/conexion.php'; // Clase para conectar a la base de datos
+require_once "../modelos/usuario.php";   // Clases adicionales necesarias
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Capturar los datos enviados desde el formulario
     $PRIMER_NOMBRE = $_POST['PRIMER_NOMBRE'] ?? null;
     $PRIMER_APELLIDO = $_POST['PRIMER_APELLIDO'] ?? null;
-    $CORREO_INSTITUCIONAL = $_POST['CORREO_INSTITUCIONAL'] ?? null;
-    $DIRECCION_USUARIO = $_POST['DIRECCION_USUARIO'] ?? null;
+    $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $_POST['TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO'] ?? null;
+    $ROL_ID_ROL = $_POST['ROL_ID_ROL'] ?? null;
     $NUMERO_DOCUMENTO = $_POST['NUMERO_DOCUMENTO'] ?? null;
     $PASSWORD = $_POST['PASSWORD'] ?? null;
 
     // Verificar que los campos obligatorios están presentes
-    if (!$PRIMER_NOMBRE || !$PRIMER_APELLIDO || !$CORREO_INSTITUCIONAL || !$DIRECCION_USUARIO || !$NUMERO_DOCUMENTO || !$PASSWORD) {
+    if (!$PRIMER_NOMBRE || !$PRIMER_APELLIDO || !$TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO || !$ROL_ID_ROL || !$NUMERO_DOCUMENTO || !$PASSWORD) {
         echo "Error: Todos los campos obligatorios deben estar llenos.";
         exit();
     }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Preparar consulta para insertar los datos en la tabla 'usuario'
         $stmt = $conexion->prepare("
             INSERT INTO usuarios 
-            (PRIMER_NOMBRE, PRIMER_APELLIDO, CORREO_INSTITUCIONAL, DIRECCION_USUARIO, NUMERO_DOCUMENTO, PASSWORD) 
+            (PRIMER_NOMBRE, PRIMER_APELLIDO, TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, ROL_ID_ROL, NUMERO_DOCUMENTO, PASSWORD) 
             VALUES (?, ?, ?, ?, ?, ?)
         ");
 
@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([
             $PRIMER_NOMBRE,
             $PRIMER_APELLIDO,
-            $CORREO_INSTITUCIONAL,
-            $DIRECCION_USUARIO,
+            $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO,
+            $ROL_ID_ROL,
             $NUMERO_DOCUMENTO,
             PASSWORD_hash($PASSWORD, PASSWORD_BCRYPT) // Encriptar la contraseña
         ]);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>Serás redirigido a la página de inicio de sesión en breve...</p>";
 
         // Usar header para redirigir después de 3 segundos
-        header("Refresh:3; url=Inicio_Sesion.html");
+        header("Refresh:3; url= ../vistas/iniciodesesion2.html");
         exit();
     } catch (PDOException $e) {
         // Manejo de errores en la base de datos

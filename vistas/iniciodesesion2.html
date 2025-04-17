@@ -45,26 +45,30 @@
                     <div class="text-center">
                         <img src="IMAGENES/logositeasf 3.png" class="img-reducida">
                     </div>
-                    <form id="inicioSesionForm">
+                    <form id="inicioSesionForm" action="../controladores/login.php" method="POST">
                         <div class="mb-3">
-                            <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                            <select id="tipoDocumento" class="form-select" required>
+                            <label for="TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO" class="form-label">Tipo de Documento</label>
+                            <select id="TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO" name="TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO" class="form-select" required>
                                 <option selected>Seleccione...</option>
-                                <option value="CC">Cédula de Ciudadanía</option>
-                                <option value="TI">Tarjeta de Identidad</option>
-                                <option value="CE">Cédula de Extranjería</option>
-                                <option value="PP">Pasaporte</option>
-                                <option value="RCN">Registro Civil de Nacimiento</option>
+                                <option value="1">Cédula de Ciudadanía</option>
+                                <option value="2">Cédula de Extranjería</option>
+                                <option value="3">Pasaporte</option>
+                                <option value="4">Tarjeta de Identidad</option>
+                                <option value="5">Registro Civil de Nacimiento</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
-                            <label for="numeroIdentificacion" class="form-label">Número de Identificación</label>
-                            <input type="number" class="form-control" id="numeroIdentificacion" placeholder="Ingrese su número de identificación" inputmode="numeric" pattern="\d*" required>
+                            <label for="NUMERO_DOCUMENTO" class="form-label">Número de identificación:</label>
+                            <input type="number" class="form-control" id="NUMERO_DOCUMENTO" name="NUMERO_DOCUMENTO" required placeholder="0123456789">
                         </div>
+                        
                         <div class="mb-3">
-                            <label for="contrasena" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña" required>
+                            <label for="PASSWORD" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="PASSWORD" name="PASSWORD" placeholder="Ingrese su contraseña" required>
                         </div>
+
+
                         <button type="submit" class="btn boton w-100">Ingresar</button>
                         <div class="d-flex flex-column align-items-center mt-3">
                             <a href="registrarse2.html" class="link-primary">Regístrate</a>
