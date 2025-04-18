@@ -16,7 +16,7 @@ abstract class UsuarioAbstracto
     }
 
     // Métodos abstractos para implementación en clases derivadas
-    abstract public function validarUsuario();
+   
     abstract public function validarNUMERO_DOCUMENTO();
     abstract public function validarPASSWORD();
 
@@ -80,11 +80,7 @@ class Padre extends UsuarioAbstracto
     }
     
     // Métodos de validación
-    public function validarUsuario()
-    {
-        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
-        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
-    }
+    
 
     public function validarNUMERO_DOCUMENTO()
     {
@@ -156,12 +152,7 @@ class Estudiante extends UsuarioAbstracto
     }
 
     // Métodos de validación
-    public function validarUsuario()
-    {
-        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
-        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
-    }
-
+    
     public function validarNUMERO_DOCUMENTO()
     {
         // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
@@ -240,12 +231,7 @@ class Profesor extends UsuarioAbstracto
     }
 
     // Métodos de validación
-    public function validarUsuario()
-    {
-        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
-        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
-    }
-    public function validarNUMERO_DOCUMENTO()
+        public function validarNUMERO_DOCUMENTO()
     {
         // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
         return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
@@ -289,11 +275,6 @@ class Psicoorientador extends UsuarioAbstracto
         return strlen($this->NUMERO_DOCUMENTO) >= 5 ? true : "El número de documento debe tener al menos 5 caracteres.";
     }
 
-    public function validarUsuario()
-    {
-        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
-        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
-    }
     public function validarPASSWORD()
     {
         if (strlen($this->PASSWORD) < 8) {
@@ -343,11 +324,6 @@ class Administrador extends UsuarioAbstracto
         $this->TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO = $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO;
     }
 
-    public function validarUsuario()
-    {
-        // Validar el usuario (ejemplo: longitud mínima de 5 caracteres)
-        return strlen($this->PRIMER_NOMBRE) >= 5 ? true : "El nombre debe tener al menos 5 caracteres.";
-    }
     public function validarNUMERO_DOCUMENTO()
     {
         // Validar el número de documento (ejemplo: longitud mínima de 5 caracteres)
@@ -386,23 +362,31 @@ class Administrador extends UsuarioAbstracto
 }
 
 // Clase UsuarioFactory para instanciar usuarios
-function crearUsuario($ROL_ID_ROL, $PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO = null, $DIRECCION_USUARIO = null, $CODIGO_MATERIA = null, $CODIGO_GRADO = null, $TELEFONO_USUARIO = null, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $CORREO_INSTITUCIONAL = null, $numero_documento_padre = null)
+class UsuarioFactory
 {
+    public static function crearUsuario($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO = null, $DIRECCION_USUARIO = null, $ROL_ID_ROL,$CODIGO_MATERIA = null, $CODIGO_GRADO = null, $TELEFONO_USUARIO = null, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $CORREO_INSTITUCIONAL = null, $numero_documento_padre = null)
+    {
+     // Validar parámetros básicos
+        if (empty($PRIMER_NOMBRE) || empty($PRIMER_APELLIDO) || empty($NUMERO_DOCUMENTO) || empty($PASSWORD)) {
+            throw new Exception("Los parámetros básicos son obligatorios para crear un usuario.");
+        }
+        // Crear usuario según rol
 
-    switch ($ROL_ID_ROL) {
-        case 'Padre':
-            return new Padre($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO, $DIRECCION_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $numero_documento_padre);
-        case 'Estudiante':
-            return new Estudiante($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_INSTITUCIONAL, $CODIGO_GRADO, $NUMERO_DOCUMENTO, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $ROL_ID_ROL, $numero_documento_padre);
-        case 'Profesor':
-            return new Profesor($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CODIGO_MATERIA, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
-        case 'Psicoorientador': 
-            return new Psicoorientador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $CORREO_INSTITUCIONAL, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
-        case 'Administrador':
-            return new Administrador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
-        default:
-            throw new Exception("Rol no válido: $ROL_ID_ROL");
+        switch ($ROL_ID_ROL) {
+            case 3: //padre
+                return new Padre($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_USUARIO, $DIRECCION_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $numero_documento_padre);
+             case 4:
+                return new Estudiante($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CORREO_INSTITUCIONAL, $CODIGO_GRADO, $NUMERO_DOCUMENTO, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO, $ROL_ID_ROL, $numero_documento_padre);
+            case 1: //profesor
+                return new Profesor($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $CODIGO_MATERIA, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+            case 2: //psicoorientador
+                return new Psicoorientador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $CORREO_INSTITUCIONAL, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+             case 5: //administrador
+                return new Administrador($PRIMER_NOMBRE, $PRIMER_APELLIDO, $NUMERO_DOCUMENTO, $PASSWORD, $TELEFONO_USUARIO, $ROL_ID_ROL, $TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO);
+             default:
+                throw new Exception("Rol no válido: $ROL_ID_ROL");
         
+        }
       
     }
 }

@@ -1,3 +1,22 @@
+<?php
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+session_start();
+//var_dump($_SESSION); // Muestra todas las variables de sesión
+// Verificar la sesión
+if (!isset($_SESSION['NUMERO_DOCUMENTO']) || !isset($_SESSION['ROL_ID_ROL'])) {
+    ob_start();
+    echo "Sesión no establecida. Redirigiendo a la página de inicio de sesión...";
+    header("Location: ../vistas/iniciodesesion2.html");
+    ob_end_flush();
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
