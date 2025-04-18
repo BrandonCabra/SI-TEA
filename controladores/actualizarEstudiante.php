@@ -1,6 +1,6 @@
 <?php
 require_once 'freddy/conexion.php';
-require_once 'estudiante.php';
+require_once 'modelos/estudiante.php';
 
 //Obtener la lista de estudiantes
 try {

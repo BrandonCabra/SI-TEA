@@ -1,6 +1,6 @@
 <?php
 require_once 'freddy/conexion.php';
-require_once 'estudiante.php';
+require_once 'modelos/estudiante.php';
 
 
  if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
@@ -40,4 +40,7 @@ require_once 'estudiante.php';
  }
  
 
+
+    
 ?>
+<a href="/vistas/Caracterizacion.html">Regresar</a>
