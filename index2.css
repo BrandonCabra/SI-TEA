@@ -301,5 +301,38 @@ form .form-label {
   form {
     margin-top: 80px;
     padding: 40px;
-  }
-  
+}
+
+
+.menu {
+  text-decoration: none; /* Elimina la linea de los links */
+  color: #0047A2; /*color de los links*/
+}
+
+.color:hover {
+  color: #1ea3f6;
+}
+
+/* link de ingresar dentro del menu de la barra de navegación */
+.cambio {
+  background-color: #0047A2;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+
+}
+
+.cambio:hover {
+  background-color: #1ea3f6;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0; /* Elimina los márgenes internos del contenedor */
+  margin: 0; /* Elimina los márgenes externos del contenedor */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
