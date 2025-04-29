@@ -1,0 +1,126 @@
+proyecto/
+│
+├── frontend/                    # Dockerfile necesario
+│   ├── html/
+│   │   ├── index.html
+│   │   ├── about.html
+│   │   ├── contact.html
+│   │   ├── components/
+│   │   │   ├── header.html
+│   │   │   ├── footer.html
+│   ├── css/
+│   │   ├── styles.css
+│   │   ├── theme.css
+│   │   ├── components/
+│   │   │   ├── navbar.css
+│   │   │   ├── buttons.css
+│   ├── js/
+│   │   ├── main.js
+│   │   ├── utils.js
+│   │   ├── api.js
+│   │   ├── modules/
+│   │   │   ├── validation.js
+│   │   │   ├── animations.js
+│   │   │   ├── events.js
+│   ├── react/
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   ├── pages/
+│   │   │   │   ├── Home.jsx
+│   │   │   │   ├── Contact.jsx
+│   │   │   ├── App.jsx
+│   │   ├── package.json
+│   │   ├── public/
+│   │   │   ├── index.html
+│   ├── assets/
+│   │   ├── logo.png
+│   │   ├── banner.jpg
+│   │   ├── avatar.png
+│   ├── Dockerfile               # Dockerfile necesario para frontend
+│
+├── backend/                     # Dockerfile necesario
+│   ├── php/
+│   │   ├── controllers/
+│   │   │   ├── UserController.php
+│   │   │   ├── ProductController.php
+│   │   ├── models/
+│   │   │   ├── User.php
+│   │   │   ├── Product.php
+│   │   ├── views/
+│   │   │   ├── home.php
+│   │   │   ├── dashboard.php
+│   │   ├── routes/
+│   │   │   ├── api.php
+│   │   │   ├── web.php
+│   │   ├── config/
+│   │   │   ├── database.php
+│   │   ├── public/
+│   ├── api/
+│   │   ├── fastapi/
+│   │   │   ├── main.py
+│   │   │   ├── endpoints/
+│   │   │   │   ├── users.py
+│   │   │   │   ├── products.py
+│   │   │   ├── models/
+│   │   │   │   ├── user_model.py
+│   │   │   │   ├── product_model.py
+│   │   │   ├── database/
+│   │   │   │   ├── db.py
+│   │   │   ├── requirements.txt
+│   │   │   ├── .env
+│   ├── php.Dockerfile               # Dockerfile necesario para PHP (Backend)
+│   ├── fastapi.Dockerfile               # Dockerfile necesario para FastAPI (API)
+│
+├── database/                    # Dockerfile no necesario
+│   ├── migrations/
+│   │   ├── 001_create_users_table.sql
+│   │   ├── 002_create_products_table.sql
+│   ├── schemas/
+│   │   ├── user_schema.sql
+│   │   ├── product_schema.sql
+│   ├── seeds/
+│   │   ├── users_seed.sql
+│   │   ├── products_seed.sql
+│   ├── backup/
+│   │   ├── backup_2025_04_19.sql
+│   ├── db_config.json
+│   ├── init_db.py
+│
+├── mobile/                      # Dockerfile no necesario (aunque puedes agregar uno si lo deseas para la automatización)
+│   ├── flutter/
+│   │   ├── lib/
+│   │   │   ├── screens/
+│   │   │   │   ├── home_screen.dart
+│   │   │   │   ├── login_screen.dart
+│   │   │   │   ├── profile_screen.dart
+│   │   │   ├── widgets/
+│   │   │   │   ├── button.dart
+│   │   │   │   ├── card.dart
+│   │   │   ├── services/
+│   │   │   │   ├── api_service.dart
+│   │   │   ├── models/
+│   │   │   │   ├── user_model.dart
+│   │   │   │   ├── product_model.dart
+│   ├── assets/
+│   ├── pubspec.yaml
+│   ├── main.dart
+│
+├── github/                      # Dockerfile no necesario
+│   ├── README.md
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── .gitignore
+│   ├── .github/
+│   │   ├── workflows/
+│   │   │   ├── deploy.yml
+│   │   │   ├── tests.yml
+│   │   ├── ISSUE_TEMPLATE/
+│   │   │   ├── bug_report.md
+│   │   │   ├── feature_request.md
+│   │   ├── PULL_REQUEST_TEMPLATE/
+│   │   │   ├── pull_request_template.md
+│
+├── docker-compose.yml
+├── nginx.conf
