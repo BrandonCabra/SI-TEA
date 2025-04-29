@@ -1,44 +1,35 @@
 <?php
 // Configuración de la conexión a la base de datos
-$host = 'localhost';
-$db = 'sitea'; // Nombre de tu base de datos
-$user = 'root'; // Usuario de tu base de datos
-$password = ''; // Contraseña de tu base de datos
-
-$conn = new mysqli($host, $user, $password, $db);
-
-// Verificar si la conexión es exitosa
-if ($conn->connect_error) {
-    die("Error en la conexión: " . $conn->connect_error);
-}
+require_once '../freddy/conexion.php';
+require_once '../modelos/piar.php';
 
 // Procesar los datos del formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Capturar los datos enviados desde el formulario
-    $evaluacion = isset($_POST['EVALUACION']) ? $conn->real_escape_string($_POST['EVALUACION']) : '';
-    $flexibilizacion = isset($_POST['FLEXIBILIZACION']) ? $conn->real_escape_string($_POST['FLEXIBILIZACION']) : '';
-    $barra_aprendizaje = isset($_POST['BARRA_DE_APRENDIZAJE']) ? $conn->real_escape_string($_POST['BARRA_DE_APRENDIZAJE']) : '';
-    $periodo = isset($_POST['PERIODO']) ? $conn->real_escape_string($_POST['PERIODO']) : '';
-    $dba = isset($_POST['DBA']) ? $conn->real_escape_string($_POST['DBA']) : '';
-    $estudiante_ID_ESTUDIANTE = isset($_POST['estudiante_ID_ESTUDIANTE']) ? $conn->real_escape_string($_POST['estudiante_ID_ESTUDIANTE']) : '';
+    $CODIGO_PIAR = $_POST['CODIGO_PIAR'] ?? null;
+    $PERIODO = $_POST['PERIODO'] ?? null;
+    $EVALUACION = $_POST['EVALUACION'] ?? null;
+    $DBA = $_POST['DBA'] ?? null;
+    $BARRA_DE_APRENDIZAJE = $_POST['BARRA_DE_APRENDIZAJE'] ?? null;
+    $FLEXIBILIZACION = $_POST['FLEXIBILIZACION'] ?? null;
+    $ESTUDIANTE_ID_ESTUDIANTE = $_POST['ESTUDIANTE_ID_ESTUDIANTE'] ?? null;
+    $SEGUIMIENTO_EVALUATIVO = $_POST['SEGUIMIENTO_EVALUATIVO'] ?? null;
 
-    // Verificar que todos los campos estén completos
-    if (!empty($evaluacion) && !empty($flexibilizacion) && !empty($barra_aprendizaje) && !empty($periodo) && !empty($dba) && !empty($estudiante_ID_ESTUDIANTE)) {
-        // Insertar los datos en la tabla 'piar'
-        $sql = "INSERT INTO piar (EVALUACION, FLEXIBILIZACION, BARRA_DE_APRENDIZAJE, PERIODO, DBA, estudiante_ID_ESTUDIANTE) 
-                VALUES ('$evaluacion', '$flexibilizacion', '$barra_aprendizaje', '$periodo', '$dba', '$estudiante_ID_ESTUDIANTE')";
+    try {
 
-if ($conn->query($sql) === TRUE) {
-    echo "Datos del PIAR guardados exitosamente, estudiante con Documento Número: $estudiante_ID_ESTUDIANTE</p>";
-    header("Refresh:3; url=PIAR.HTML"); // Redirige a "tu_pagina_destino.php" después de 3 segundos
-    exit;
-} else {
-    echo "Error al guardar los datos: " . $conn->error;
-}
+        $piar = crearPiar($CODIGO_PIAR, $PERIODO, $EVALUACION, $DBA, $BARRA_DE_APRENDIZAJE, $FLEXIBILIZACION, $ESTUDIANTE_ID_ESTUDIANTE, $SEGUIMIENTO_EVALUATIVO);
+        $conexion = Conexion1::conectar();
 
+        $conexion->guardarPiar($piar);
+        // Aquí puedes agregar la lógica para redirigir a otra página o mostrar un mensaje de éxito
+
+        echo "¡PIAR registrado exitosamente!";
+    } catch (PDOException $e) {
+        echo "Error en la conexión a la base de datos. Intente más tarde: " . $e->getMessage(); 
+           
     }
+} else {
+    echo "Método de solicitud no permitido.";
 }
-
-// Cerrar la conexión
-$conn->close();
+// Redirigir a la página de inicio o mostrar un mensaje de error
 ?>

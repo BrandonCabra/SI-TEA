@@ -1,6 +1,6 @@
 <?php
 // Incluir el archivo de conexión
-include 'freddy/conexion.php';
+include '../freddy/conexion.php';
 
 $conexion =Conexion1::conectar();
 

@@ -1,6 +1,6 @@
 <?php
 
-include 'freddy/conexion.php';
+include '../freddy/conexion.php';
 // Crear instancia de la conexión utilizando la clase Conexion1
 $conexion =Conexion1::conectar();
 // Consulta para obtener los detalles de `estudiante`

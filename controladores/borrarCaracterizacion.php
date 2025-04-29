@@ -1,5 +1,5 @@
 <?php
-require_once 'freddy/conexion.php';
+require_once '../freddy/conexion.php';
 $conexion = Conexion1::conectar();
 
 // Consulta para obtener estudiantes sin caracterización
