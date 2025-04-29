@@ -1,5 +1,5 @@
 <?php
-require_once 'freddy/conexion.php';
+require_once '../freddy/conexion.php';
 
 // Obtener la lista de estudiantes
 try {
